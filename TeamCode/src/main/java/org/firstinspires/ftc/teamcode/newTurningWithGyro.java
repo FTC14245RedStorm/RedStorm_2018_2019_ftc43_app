@@ -33,11 +33,11 @@ public class newTurningWithGyro extends LinearOpMode {
         waitForStart();
 
         // Calculate the number of encoder counts to travel for the defined distance
-
+robot.setDriveMotorPower(0.5, -0.5);
         while (opModeIsActive() &&
                 robot.getHeading() < 90) {
         }
-            //stop turning Robot
+            robot.setDriveMotorPower(0,0);//stop turning Robot
 
 
     }

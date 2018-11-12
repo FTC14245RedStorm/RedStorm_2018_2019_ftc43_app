@@ -68,9 +68,9 @@ public class RedStormSampleAuto extends LinearOpMode {
                 telemetry.addData("encoderCount", "(%.0f)",robot.getLiftEncoderCount());
             }
         }
-
-        robot.setTeamMarkerArm(0.85);
-        robot.setTeamMarkerGrip(0.5);
-
+/**
+       robot.setTeamMarkerArm(0.85);
+       robot.setTeamMarkerGrip(0.5);
+*/
     }
 }
