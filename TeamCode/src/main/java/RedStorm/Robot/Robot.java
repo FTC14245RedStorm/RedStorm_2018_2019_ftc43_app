@@ -5,6 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import static RedStorm.Constants.RobotConstants.ANDYMARK_NEVEREST_40_PULSES;
@@ -239,6 +242,27 @@ public class Robot {
 
 
     }
+    public float getHeading() {
+
+        float heading;
+
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        heading = Math.abs(angles.firstAngle);
+
+        return heading;
+    }
     //
+    /**
+     * This method will set the power for the drive motors
+     *
+     * @param leftBackMotorPower power setting for the left back motor
+     * @param rightBackMotorPower power setting for the right back motor
+     */
+    public void setDriveMotorPower(double leftBackMotorPower, double rightBackMotorPower){
+
+        /* Set the motor powers */
+        leftDrive.setPower(leftBackMotorPower);
+        rightDrive.setPower(rightBackMotorPower);
+    }
     //
     }
