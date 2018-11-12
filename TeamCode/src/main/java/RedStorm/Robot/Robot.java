@@ -83,20 +83,7 @@ public class Robot {
         initializeServosAutonomous();
     }
 
-    /**
-     * This method will set the power for the drive motors
-     *
-     *
-     * @param leftBackMotorPower power setting for the left back motor
-     * @param rightBackMotorPower power setting for the right back motor
-     */
-    public void setDriveMotorPower(double leftBackMotorPower, double rightBackMotorPower){
 
-        /* Set the motor powers */
-        leftDrive.setPower(leftBackMotorPower);
-        rightDrive.setPower(rightBackMotorPower);
-
-    }
 
     /**
      * This method will set the power for the lift motor
@@ -179,9 +166,9 @@ public class Robot {
     public double getLiftEncoderCount() {
         double LiftEncoderCount;
 
-        LiftEncoderCount = liftMotor.getCurrentPosition() //Get the current encoder count for the lift motor
+        LiftEncoderCount = liftMotor.getCurrentPosition(); //Get the current encoder count for the lift motor
 
-        return LiftEncoderCount
+        return LiftEncoderCount;
     }
     /**
      * This method will return the average encoder count from the left and right drive motors

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,6 +12,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import RedStorm.Robot.Robot;
+
+@Autonomous(name="Turning with Gyro", group="gyro")
+
 public class newTurningWithGyro extends LinearOpMode {
 
     public Robot robot = new Robot();    // Create a new instance of the robot
@@ -42,4 +46,4 @@ public class newTurningWithGyro extends LinearOpMode {
 
 
 }
-}
+
