@@ -25,7 +25,7 @@ public class autonomous extends LinearOpMode {
         robot.setLiftMotorPower(-.4);
 
         while (opModeIsActive() &&
-                robot.getLiftEncoderCount() < 40) {
+                robot.getLiftEncoderCount() < -15) {
 
         }
 

@@ -11,9 +11,9 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 
 import RedStorm.Robot.Robot;
 
-/*public class driveAlongWall {
+public class driveAlongWall {
 
-    ModernRoboticsI2cRangeSensor leftRangeSensor;
+   /* ModernRoboticsI2cRangeSensor leftRangeSensor;
     ModernRoboticsI2cRangeSensor rightRangeSensor;
     public Telemetry telemetry = new TelemetryImpl(this);
 
@@ -32,7 +32,7 @@ import RedStorm.Robot.Robot;
         telemetry.update();
 */
 
-    }
+  //  }
 
 
 }
