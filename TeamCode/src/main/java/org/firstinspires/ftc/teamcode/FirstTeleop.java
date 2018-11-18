@@ -69,7 +69,7 @@ public class FirstTeleop extends OpMode{
          */
         robot.setDriveMotorPower(left, right);
 
-        robot.setLiftMotorPower(lift);
+      //  robot.setLiftMotorPower(lift);
     }
     /**
      * smoothPower will attempt to smooth or scale joystick input when driving the

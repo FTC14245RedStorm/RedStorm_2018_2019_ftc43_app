@@ -28,7 +28,7 @@ public class driveAlongWall extends LinearOpMode {
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
 
-        telemetry.addData("Status: ", "Initialized");
+        telemetry.addData("Status:  ", "Initialized");
         telemetry.update();
 
         // Wait for the start button to be pushed
