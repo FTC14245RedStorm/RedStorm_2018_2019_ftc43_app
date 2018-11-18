@@ -48,11 +48,11 @@ public class autonomous extends LinearOpMode {
 
         robot.setDriveMotorPower(-.2, -.2);
         while (opModeIsActive() &&
-                robot.getRightDriveEncoderCounts() < 10) {
+                robot.getRightDriveEncoderCounts() < 4) {
         }
 
         while (opModeIsActive() &&
-                robot.getLeftDriveEncoderCounts() < 10) {
+                robot.getLeftDriveEncoderCounts() < 4) {
 
         }
         robot.setDriveMotorPower(0, 0);
