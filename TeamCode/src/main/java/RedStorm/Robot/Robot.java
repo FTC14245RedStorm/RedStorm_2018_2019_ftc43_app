@@ -1,13 +1,16 @@
 package RedStorm.Robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import static RedStorm.Constants.RobotConstants.ANDYMARK_NEVEREST_40_PULSES;
@@ -23,6 +26,9 @@ public class Robot {
     public BNO055IMU imu = null;
     public Servo teamMarkerArm;
     public Servo teamMarkerGrip;
+    public ModernRoboticsI2cRangeSensor leftRange;
+    public ModernRoboticsI2cRangeSensor rightRange;
+    public ModernRoboticsI2cRangeSensor frontRange;
 
     public BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
     public Orientation angles;
@@ -54,6 +60,11 @@ public class Robot {
 
         teamMarkerArm = hwMap.get(Servo.class, "marker_Arm");
         teamMarkerGrip = hwMap.get(Servo.class, "marker_Grip");
+
+        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "leftRange");
+        rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "rightRange");
+        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "frontRange")
+
 
         // Defines the directions the motors will spin, typically motors that
         // are mounted on the left side are mounted in such a way as that the
@@ -203,7 +214,7 @@ public class Robot {
      */
     public void initializeServosAutonomous() {
 
-        teamMarkerArm.setPosition(0.0);
+        teamMarkerArm.setPosition(0.25);
         teamMarkerGrip.setPosition(0.5);
 
 
@@ -252,4 +263,33 @@ public class Robot {
         rightDrive.setPower(rightBackMotorPower);
     }
     //
+
+    /**
+     * Returns distance of left range sensor.
+     * @return distance in inches
+     */
+    public double getLeftDistance() {
+
+        return leftRange.getDistance(DistanceUnit.INCH);
+    }
+
+    /**
+     * Returns distance of right range sensor.
+     * @return distance in inches
+     */
+
+    public double getRightDistance() {
+
+        return rightRange.getDistance(DistanceUnit.INCH);
+    }
+
+    /**
+     * Returns distance of front range sensor.
+     * @return distance in inches
+     */
+
+    public double getFrontDistance() {
+
+        return frontRange.getDistance(DistanceUnit.INCH);
+    }
     }
