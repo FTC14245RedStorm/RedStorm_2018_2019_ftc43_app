@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.TypeConversion;
 
@@ -11,15 +12,12 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 
 import RedStorm.Robot.Robot;
 
-public class driveAlongWall {
+public class driveAlongWall extends LinearOpMode {
 
-   /* ModernRoboticsI2cRangeSensor leftRangeSensor;
-    ModernRoboticsI2cRangeSensor rightRangeSensor;
-    public Telemetry telemetry = new TelemetryImpl(this);
 
 
     while (opModeIsActive()) {
-        telemetry.addData("raw ultrasonic", leftRangeSensor.rawUltrasonic());
+    /*    telemetry.addData("raw ultrasonic", leftRangeSensor.rawUltrasonic());
         telemetry.addData("raw optical", leftRangeSensor.rawOptical());
         telemetry.addData("cm optical", "%.2f cm", leftRangeSensor.cmOptical());
         telemetry.addData("cm", "%.2f cm", leftRangeSensor.getDistance(DistanceUnit.CM));
@@ -29,10 +27,10 @@ public class driveAlongWall {
         telemetry.addData("raw optical", rightRangeSensor.rawOptical());
         telemetry.addData("cm optical", "%.2f cm", rightRangeSensor.cmOptical());
         telemetry.addData("cm", "%.2f cm", rightRangeSensor.getDistance(DistanceUnit.CM));
-        telemetry.update();
-*/
+        telemetry.update();  */
 
-  //  }
+
+    }
 
 
 }
