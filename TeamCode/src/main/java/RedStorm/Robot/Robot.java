@@ -63,7 +63,7 @@ public class Robot {
 
         leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "leftRange");
         rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "rightRange");
-        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "frontRange")
+        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "frontRange");
 
 
         // Defines the directions the motors will spin, typically motors that
