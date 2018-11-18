@@ -26,6 +26,7 @@ public class Robot {
     public BNO055IMU imu = null;
     public Servo teamMarkerArm;
     public Servo teamMarkerGrip;
+    public Servo liftServo;
     public ModernRoboticsI2cRangeSensor leftRange;
     public ModernRoboticsI2cRangeSensor rightRange;
     public ModernRoboticsI2cRangeSensor frontRange;
@@ -60,10 +61,11 @@ public class Robot {
 
         teamMarkerArm = hwMap.get(Servo.class, "marker_Arm");
         teamMarkerGrip = hwMap.get(Servo.class, "marker_Grip");
+        liftServo=hwMap.get(Servo.class, "liftServo");
 
-        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "leftRange");
-        rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "rightRange");
-        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "frontRange");
+        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "left_Range");
+        rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "right_Range");
+        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "front_Range");
 
 
         // Defines the directions the motors will spin, typically motors that
@@ -106,6 +108,7 @@ public class Robot {
         liftMotor.setPower(liftMotorMotorPower);
 
     }
+
 
     /**
      * This method will reset the encoder count of each motor to 0. It should be used before runWithEncoders
@@ -235,6 +238,13 @@ public class Robot {
 
 
         teamMarkerGrip.setPosition(servoPosition);
+
+
+
+    }
+    public void setLiftServo(double servoPosition) {
+
+        liftServo.setPosition(servoPosition);
 
 
 
