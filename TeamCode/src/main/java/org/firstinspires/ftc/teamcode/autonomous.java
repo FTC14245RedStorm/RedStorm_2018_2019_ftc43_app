@@ -9,7 +9,7 @@ import RedStorm.Robot.Robot;
 
 public class autonomous extends LinearOpMode {
 
-    public Robot robot= new Robot();
+    public Robot robot = new Robot();
 
     @Override
     public void runOpMode() {
@@ -33,35 +33,44 @@ public class autonomous extends LinearOpMode {
 
         //we should be dismounted from space lander
 
-        robot.setDriveMotorPower(-.4, .4);
+        robot.setDriveMotorPower(.2, -.2);
 
         while (opModeIsActive() &&
-                robot.getLeftDriveEncoderCounts() < 90) {
+                robot.getHeading() < 10) {
 
         }
-        while (opModeIsActive() &&
-                robot.getRightDriveEncoderCounts() < 90) {
 
-        }
 
         robot.setDriveMotorPower(0, 0);
 
         //we should be out of handle
 
-        robot.setDriveMotorPower(-.3, -.3);
 
+        robot.setDriveMotorPower(-.2, -.2);
         while (opModeIsActive() &&
-                robot.getLeftDriveEncoderCounts() < 30) {
+                robot.getRightDriveEncoderCounts() < 4) {
         }
 
         while (opModeIsActive() &&
-                robot.getRightDriveEncoderCounts() <30) {
+                robot.getLeftDriveEncoderCounts() < 4) {
+
         }
+        robot.setDriveMotorPower(0, 0);
+
+
+        robot.setDriveMotorPower(-.2, .2);
+
+        while (opModeIsActive() &&
+                robot.getHeading() > 0) {
+        }
+
+
         robot.setDriveMotorPower(0, 0);
 
         //we should now be away from handle facing the lander
 
-        }
-
     }
+}
+
+
 
