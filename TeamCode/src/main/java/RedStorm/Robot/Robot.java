@@ -61,9 +61,9 @@ public class Robot {
         teamMarkerArm = hwMap.get(Servo.class, "marker_Arm");
         teamMarkerGrip = hwMap.get(Servo.class, "marker_Grip");
 
-        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "leftRange");
-        rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "rightRange");
-        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "frontRange");
+        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "left_Range");
+        rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "right_Range");
+        frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "front_Range");
 
 
         // Defines the directions the motors will spin, typically motors that
