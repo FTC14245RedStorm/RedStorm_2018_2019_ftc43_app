@@ -22,6 +22,8 @@ public class autonomous extends LinearOpMode {
 
         waitForStart();
 
+        robot.setLiftServo(0);
+
         robot.setLiftMotorPower(-.4);
 
         while (opModeIsActive() &&
