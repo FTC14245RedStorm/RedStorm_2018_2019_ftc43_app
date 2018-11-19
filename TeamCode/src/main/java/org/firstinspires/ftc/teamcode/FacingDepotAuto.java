@@ -30,22 +30,30 @@ public class FacingDepotAuto extends LinearOpMode {
 
             robot.setDriveMotorPower(-0.5, -0.5);
             telemetry.addData("Left Drive Encoder Counts", "(%.0f)",robot.getLeftDriveEncoderCounts());
-            telemetry.addData("Right Drive Encoder Counts", "(%.0f)",robot.getRightDriveEncoderCounts());
-
+            telemetry.addData("Right Drive Encoder Counts", "(%.0f)",robot.getRightDriveEncoderCounts());   // Drive backwards until arrived at depot
             telemetry.update();
 
         }
-        robot.setDriveMotorPower(0.0, 0.0);
+        robot.setDriveMotorPower(0.0, 0.0);  // Robot stops
 
-        robot.setDriveMotorPower(-0.5, 0.5);
+        robot.setDriveMotorPower(-0.5, 0.5);  // Robot turns 90 degrees to deposit team marker
 
         while (opModeIsActive() &&
                 robot.getHeading() < 90) {
         }
-        robot.setDriveMotorPower(0,0);//stop turning Robot
+        robot.setDriveMotorPower(0,0);  //stop turning Robot
 
-        // Put deposit code here
+        // Deposit the marker
 
+        while (opModeIsActive()) {
+            telemetry.addData("left distance", robot.getLeftDistance());
+            telemetry.addData("right distance", robot.getRightDistance());
+            telemetry.addData("front distance", robot.getFrontDistance());       // Drive along the wall until crater
+            telemetry.update();
+
+        }
+
+        // Drive straight into crater/onto crater   `
 
     }
 
