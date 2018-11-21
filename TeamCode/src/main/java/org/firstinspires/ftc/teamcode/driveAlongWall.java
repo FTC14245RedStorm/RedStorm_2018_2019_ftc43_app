@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 import RedStorm.Robot.Robot;
 
 @Autonomous(name="Drive Along Wall", group="distance")
-@Disabled
+
 
 public class driveAlongWall extends LinearOpMode {
 
@@ -33,37 +33,52 @@ public class driveAlongWall extends LinearOpMode {
         telemetry.addData("Status:  ", "Initialized");
         telemetry.update();
 
+        double wallDistanceToTravel = 0;
+        double distanceFromWall;
+        double wallDistanceTraveled = 0;
+
+
         // Wait for the start button to be pushed
         waitForStart();
 
-        while (opModeIsActive()) {
-            telemetry.addData("left distance", robot.getLeftDistance());
-            telemetry.addData("right distance", robot.getRightDistance());
-            telemetry.addData("front distance", robot.getFrontDistance());
-            telemetry.update();
+       while (opModeIsActive()) {
+
+            robot.resetEncoders();
+            robot.runWithEncoders();
+
+            wallDistanceToTravel = robot.calculateEncoderCOUNTS(12);
 
             robot.setDriveMotorPower(0.5, 0.5);
 
             while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
 
-                    if (distanceFromWall < 5) {
-                        robot.setDriveMotorPower(0.6, 0.5);
-                    }
+                distanceFromWall = robot.getLeftDistance();
+                wallDistanceTraveled = robot.getDriveEncoderCount();
 
-                    else {
-                        robot.setDriveMotorPower(0.5, 0.5);
-                    }
+                telemetry.addData("left distance", robot.getLeftDistance());
+                telemetry.addData("right distance", robot.getRightDistance());
+                telemetry.addData("front distance", robot.getFrontDistance());
+                telemetry.update();
 
-                    if (distanceFromWall < 7) {
-                        robot.setDriveMotorPower(0.5, 0.6);
-                    }
+                if (distanceFromWall < 3) {
+                    robot.setDriveMotorPower(0.6, 0.5);
+                }
 
-                    else {
-                        robot.setDriveMotorPower(0.5, 0.5);
-                    }
+                else {
+                    robot.setDriveMotorPower(0.5, 0.5);
+                }
+
+                if (distanceFromWall < 5) {
+                    robot.setDriveMotorPower(0.5, 0.6);
+                }
+
+                else {
+                    robot.setDriveMotorPower(0.5, 0.5);
+                }
             }
 
-    }
+
+       }
 
 
     }
