@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.TypeConversion;
@@ -14,6 +15,7 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 import RedStorm.Robot.Robot;
 
 @Autonomous(name="Drive Along Wall", group="distance")
+@Disabled
 
 public class driveAlongWall extends LinearOpMode {
 
@@ -39,6 +41,28 @@ public class driveAlongWall extends LinearOpMode {
             telemetry.addData("right distance", robot.getRightDistance());
             telemetry.addData("front distance", robot.getFrontDistance());
             telemetry.update();
+
+            robot.setDriveMotorPower(0.5, 0.5);
+
+            while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
+
+                    if (distanceFromWall < 5) {
+                        robot.setDriveMotorPower(0.6, 0.5);
+                    }
+
+                    else {
+                        robot.setDriveMotorPower(0.5, 0.5);
+                    }
+
+                    if (distanceFromWall < 7) {
+                        robot.setDriveMotorPower(0.5, 0.6);
+                    }
+
+                    else {
+                        robot.setDriveMotorPower(0.5, 0.5);
+                    }
+            }
+
     }
 
 
