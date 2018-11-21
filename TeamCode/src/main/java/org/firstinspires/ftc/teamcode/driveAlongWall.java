@@ -60,21 +60,17 @@ public class driveAlongWall extends LinearOpMode {
                 telemetry.addData("front distance", robot.getFrontDistance());
                 telemetry.update();
 
-                if (distanceFromWall < 3) {
+                if (distanceFromWall < 3.0) {
                     robot.setDriveMotorPower(0.6, 0.5);
                 }
-
-                else {
-                    robot.setDriveMotorPower(0.5, 0.5);
-                }
-
-                if (distanceFromWall < 5) {
+                else
+                    if (distanceFromWall > 5.0) {
                     robot.setDriveMotorPower(0.5, 0.6);
                 }
-
                 else {
                     robot.setDriveMotorPower(0.5, 0.5);
-                }
+                    }
+
             }
 
 
