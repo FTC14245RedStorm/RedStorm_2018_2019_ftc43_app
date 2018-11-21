@@ -44,7 +44,7 @@ public class driveAlongWall extends LinearOpMode {
 
             robot.setDriveMotorPower(0.5, 0.5);
 
-            while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
+          /**  while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
 
                     if (distanceFromWall < 5) {
                         robot.setDriveMotorPower(0.6, 0.5);
@@ -62,7 +62,7 @@ public class driveAlongWall extends LinearOpMode {
                         robot.setDriveMotorPower(0.5, 0.5);
                     }
             }
-
+*/
     }
 
 

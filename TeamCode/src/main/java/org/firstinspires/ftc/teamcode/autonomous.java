@@ -12,7 +12,7 @@ public class autonomous extends LinearOpMode {
     public Robot robot = new Robot();
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
         robot.initialize(hardwareMap);             // Initialize the robot
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
@@ -22,16 +22,24 @@ public class autonomous extends LinearOpMode {
 
         waitForStart();
 
-        robot.setLiftServo(.2);
+        double startDeployTime = System.currentTimeMillis();
+
+        robot.setLiftServo(.6);
+
+        Thread.sleep(1000);
 
         robot.setLiftMotorPower(-.2);
 
         while (opModeIsActive() &&
-                robot.getLiftEncoderCount() < -15) {
+                robot.getLiftEncoderCount() < 135
+                &&
+                System.currentTimeMillis() - startDeployTime < 3000) {
 
         }
 
         robot.setLiftMotorPower(0);
+
+        Thread.sleep(1000);
 
         //we should be dismounted from space lander
 
