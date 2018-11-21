@@ -20,7 +20,7 @@ import RedStorm.Robot.Robot;
 public class driveAlongWall extends LinearOpMode {
 
 
-    public Robot robot = new Robot();    // Create a new instance of the robot
+    public Robot robot = new Robot();    // Create a new instance of the robot!
 
 
     public void runOpMode () {
