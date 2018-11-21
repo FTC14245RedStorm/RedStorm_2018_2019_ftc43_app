@@ -38,7 +38,7 @@ public class driveAlongWall extends LinearOpMode {
         double wallDistanceTraveled = 0;
 
 
-        // Wait for the start button to be pushed
+        // Wait for the start button to be pushed!
         waitForStart();
 
        while (opModeIsActive()) {

@@ -175,7 +175,7 @@ public class ConceptVuforiaNavRoverRuckus extends LinearOpMode {
          *       where the Blue Alliance Station is. (Positive is from the center, towards the BlueAlliance station)
          *     - The Z axis runs from the floor, upwards towards the ceiling.  (Positive is above the floor)
          *
-         * This Rover Ruckus sample places a specific target in the middle of each perimeter wall.
+         * Th+is Rover Ruckus sample places a specific target in the middle of each perimeter wall.
          *
          * Before being transformed, each target image is conceptually located at the origin of the field's
          *  coordinate system (the center of the field), facing up.
