@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.TypeConversion;
@@ -15,10 +16,11 @@ import RedStorm.Robot.Robot;
 
 @Autonomous(name="Drive Along Wall", group="distance")
 
+
 public class driveAlongWall extends LinearOpMode {
 
 
-    public Robot robot = new Robot();    // Create a new instance of the robot
+    public Robot robot = new Robot();    // Create a new instance of the robot!
 
 
     public void runOpMode () {
@@ -31,15 +33,51 @@ public class driveAlongWall extends LinearOpMode {
         telemetry.addData("Status:  ", "Initialized");
         telemetry.update();
 
-        // Wait for the start button to be pushed
+        double wallDistanceToTravel = 0;
+        double distanceFromWall;
+        double wallDistanceTraveled = 0;
+
+
+        // Wait for the start button to be pushed!
         waitForStart();
 
-        while (opModeIsActive()) {
-            telemetry.addData("left distance", robot.getLeftDistance());
-            telemetry.addData("right distance", robot.getRightDistance());
-            telemetry.addData("front distance", robot.getFrontDistance());
-            telemetry.update();
-    }
+       while (opModeIsActive()) {
+
+            robot.resetEncoders();
+            robot.runWithEncoders();
+
+            wallDistanceToTravel = robot.calculateEncoderCOUNTS(12);
+
+            robot.setDriveMotorPower(0.5, 0.5);
+
+            while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
+
+                distanceFromWall = robot.getLeftDistance();
+                wallDistanceTraveled = robot.getDriveEncoderCount();
+
+                telemetry.addData("left distance", "(%.2f)",robot.getLeftDistance());
+                telemetry.addData("right distance", "(%.2f)",robot.getRightDistance());
+                telemetry.addData("front distance", "(%.2f)",robot.getFrontDistance());
+                telemetry.update();
+
+                if (distanceFromWall < 3.0) {
+                    robot.setDriveMotorPower(0.6, 0.5);
+                    telemetry.addLine("turning right - away from wall");
+                }
+                else
+                    if (distanceFromWall > 5.0) {
+                        robot.setDriveMotorPower(0.5, 0.6);
+                        telemetry.addLine("turning left - towards wall ");
+                }
+                else {
+                        robot.setDriveMotorPower(0.5, 0.5);
+                        telemetry.addLine("not turning going straight");
+                    }
+
+            }
+
+
+       }
 
 
     }

@@ -24,12 +24,13 @@ public class Robot {
     public DcMotor leftDrive = null;
     public DcMotor liftMotor = null;
     public BNO055IMU imu = null;
-    public Servo teamMarkerArm;
-    public Servo teamMarkerGrip;
-    public Servo liftServo;
-    public ModernRoboticsI2cRangeSensor leftRange;
-    public ModernRoboticsI2cRangeSensor rightRange;
-    public ModernRoboticsI2cRangeSensor frontRange;
+    public Servo teamMarkerArm = null;
+    public Servo teamMarkerGrip = null;
+    public Servo liftServo = null;
+    public ModernRoboticsI2cRangeSensor leftRange  = null;
+    public ModernRoboticsI2cRangeSensor rightRange = null;
+    public ModernRoboticsI2cRangeSensor frontRange = null;
+
 
     public BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
     public Orientation angles;
@@ -61,11 +62,12 @@ public class Robot {
 
         teamMarkerArm = hwMap.get(Servo.class, "marker_Arm");
         teamMarkerGrip = hwMap.get(Servo.class, "marker_Grip");
-        liftServo=hwMap.get(Servo.class, "liftServo");
+        liftServo = hwMap.get(Servo.class, "liftServo");
 
-        leftRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "left_Range");
+        leftRange  = hwMap.get(ModernRoboticsI2cRangeSensor.class, "left_Range");
         rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "right_Range");
         frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "front_Range");
+
 
 
         // Defines the directions the motors will spin, typically motors that
@@ -183,6 +185,9 @@ public class Robot {
        LiftEncoderCount = liftMotor.getCurrentPosition(); //Get the current encoder count for the lift motor
 
         return LiftEncoderCount;  }
+
+
+
     /**
      * This method will return the average encoder count from the left and right drive motors
      * @return averageEncoderCount - the average encoder count from the left and right drive motors
@@ -216,8 +221,8 @@ public class Robot {
      */
     public void initializeServosAutonomous() {
 
-        teamMarkerArm.setPosition(0.5);
-        teamMarkerGrip.setPosition(0.5);
+       // teamMarkerArm.setPosition(-0.25);
+        //teamMarkerGrip.setPosition(0);
 
 
     }
