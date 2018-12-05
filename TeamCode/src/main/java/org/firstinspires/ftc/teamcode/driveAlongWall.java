@@ -36,23 +36,23 @@ public class driveAlongWall extends LinearOpMode {
         double wallDistanceToTravel = 0;
         double distanceFromWall;
         double wallDistanceTraveled = 0;
+        String remember = new String();
 
 
         // Wait for the start button to be pushed!
         waitForStart();
 
-       while (opModeIsActive()) {
 
             robot.resetEncoders();
             robot.runWithEncoders();
 
-            wallDistanceToTravel = robot.calculateEncoderCOUNTS(12);
+            wallDistanceToTravel = robot.calculateEncoderCOUNTS(36);
 
             robot.setDriveMotorPower(0.5, 0.5);
 
             while (opModeIsActive() && wallDistanceToTravel >= wallDistanceTraveled) {
 
-                distanceFromWall = robot.getLeftDistance();
+                distanceFromWall = robot.getRightDistance();
                 wallDistanceTraveled = robot.getDriveEncoderCount();
 
                 telemetry.addData("left distance", "(%.2f)",robot.getLeftDistance());
@@ -60,24 +60,43 @@ public class driveAlongWall extends LinearOpMode {
                 telemetry.addData("front distance", "(%.2f)",robot.getFrontDistance());
                 telemetry.update();
 
-                if (distanceFromWall < 3.0) {
-                    robot.setDriveMotorPower(0.6, 0.5);
-                    telemetry.addLine("turning right - away from wall");
+                if (distanceFromWall > 250) {
+                    if (remember.equals("right")) {
+                        robot.setDriveMotorPower(0.5, 0.55);
+                    }
+                    else {
+                        if (remember.equals("left")) {
+                            robot.setDriveMotorPower(0.55, 0.5);
+                        }
+                        else {
+                            robot.setDriveMotorPower(0.5, 0.5);
+                        }
+                    }
+
                 }
-                else
-                    if (distanceFromWall > 5.0) {
-                        robot.setDriveMotorPower(0.5, 0.6);
-                        telemetry.addLine("turning left - towards wall ");
+
+                if (distanceFromWall > 5.0) {
+                    robot.setDriveMotorPower(0.525, 0.5);
+                    telemetry.addLine("turning right - towards wall");
+                    remember = "right";
                 }
                 else {
+                    if (distanceFromWall < 3.0) {
+                        robot.setDriveMotorPower(0.5, 0.525);
+                        telemetry.addLine("turning left - away from wall ");
+                        remember = "left";
+                    }
+                    else {
                         robot.setDriveMotorPower(0.5, 0.5);
                         telemetry.addLine("not turning going straight");
+                        remember = "straight";
                     }
+                }
 
             }
 
+ 
 
-       }
 
 
     }
