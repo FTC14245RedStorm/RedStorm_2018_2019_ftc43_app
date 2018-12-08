@@ -6,7 +6,7 @@ import RedStorm.Robot.Robot;
 
 @Autonomous
 
-public class FacingCraterAuto extends LinearOpMode {
+public class BadFacingCrater extends LinearOpMode {
 
     public Robot robot = new Robot();    // Create a new instance of the robot
 

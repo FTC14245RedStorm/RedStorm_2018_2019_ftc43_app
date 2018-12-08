@@ -10,15 +10,15 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
 
 public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // This line
     // establishes this program as a public abstract class that extends the header file
-    // "LinearOpMode". This makes it a header file in itself that the real autonomous op modes
+    // "LinearOpMode". This makes it a header file in itself that the real FacingCrater op modes
     // will extend. It is considered abstract because it simply contains the framework for the
-    // autonomous op modes (creating void methods and such) and does not yet translate to actual
+    // FacingCrater op modes (creating void methods and such) and does not yet translate to actual
     // movement on the robot.
 
     DcMotor motorLeft, motorRight; // These lines establish the names of the motors and sensor we
     GyroSensor sensorGyro;         // will be using.
 
-    public void initialize() { // This public void will go at the start of each autonomous op mode
+    public void initialize() { // This public void will go at the start of each FacingCrater op mode
         // and will serve as the initialization routine the robot undergoes.
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");      // These lines establish a link
@@ -45,7 +45,7 @@ public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // T
         // separate part of the
         // initialization routine. It
         // calibrates the gyro sensor before
-        // autonomous so it works optimally.
+        // FacingCrater so it works optimally.
 
         sensorGyro.calibrate(); // This line calibrates the gyro sensor.
 
@@ -67,7 +67,7 @@ public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // T
     }
 
     public void encodersForward(int distance, double power) { // This public void is called in the
-                                                              // autonomous op modes whenever the
+                                                              // FacingCrater op modes whenever the
                                                               // robot has to move forward using
                                                               // encoders. It has two parameters:
                                                               // distance in inches the robot
@@ -114,7 +114,7 @@ public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // T
     }
 
     public void encodersBackward(int distance, double power) { // This public void is called in the
-                                                               // autonomous op modes whenever the
+                                                               // FacingCrater op modes whenever the
                                                                // robot has to move backward using
                                                                // encoders. It has two parameters:
                                                                // distance in inches the robot
@@ -161,7 +161,7 @@ public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // T
     }
 
     public void gyroTurnRight (int degrees, double power) { // This public void is called in the
-                                                            // autonomous op modes whenever the
+                                                            // FacingCrater op modes whenever the
                                                             // robot has to turn right using the
                                                             // gyro sensor. It has two parameters:
                                                             // the number of degrees the robot
@@ -206,7 +206,7 @@ public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode { // T
     }
 
     public void gyroTurnLeft (int degrees, double power) { // This public void is called in the
-                                                           // autonomous op modes whenever the
+                                                           // FacingCrater op modes whenever the
                                                            // robot has to turn left using the
                                                            // gyro sensor. It has two parameters:
                                                            // the number of degrees the robot

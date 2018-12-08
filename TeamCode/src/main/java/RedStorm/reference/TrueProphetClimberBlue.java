@@ -11,18 +11,18 @@ package RedStorm.reference; // This line imports necessary software for this op 
 
 
 
-// This is a sample autonomous op mode.
+// This is a sample FacingCrater op mode.
 
 public class TrueProphetClimberBlue extends TrueProphetAutonomousHeader { // This line establishes the name of the op mode and extends
     // the header file "TrueProphetOp", which in turn extends the
     // header file "LinearOpMode", in order to access all of the
     // information and public voids in "TrueProphetOp" and to
-    // create an autonomous op mode.
+    // create an FacingCrater op mode.
 
     @Override
     public void runOpMode() throws InterruptedException { // This section of the code has both the
         // initialization routine the robot undergoes
-        // and the main autonomous program that runs
+        // and the main FacingCrater program that runs
         // in a linear fashion.
 
         teamColor = 1; // Because this op mode is to be used when we are on the blue alliance, teamColor is
@@ -46,7 +46,7 @@ public class TrueProphetClimberBlue extends TrueProphetAutonomousHeader { // Thi
         // that the coach can start the main program."
 
         waitForStart(); // Everything before this line is the initialization routine the robot undergoes,
-        // while everything after it is the main autonomous program.
+        // while everything after it is the main FacingCrater program.
 
         Thread.sleep(5000); // "The program delays for 5 seconds for the robot to avoid colliding with other
         // robots...
