@@ -46,7 +46,7 @@ public class driveAlongWall extends LinearOpMode {
             robot.resetEncoders();
             robot.runWithEncoders();
 
-            wallDistanceToTravel = robot.calculateEncoderCOUNTS(36);
+            wallDistanceToTravel = robot.calculateEncoderCounts(36);
 
             robot.setDriveMotorPower(0.5, 0.5);
 

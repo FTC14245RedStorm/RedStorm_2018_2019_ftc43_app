@@ -34,8 +34,8 @@ public class RedStormSampleAuto extends LinearOpMode {
 
         // Calculate the number of encoder counts to travel for the defined distance
 
-        double encoderCountstoTravel = robot.calculateEncoderCOUNTS(24);   //  Calculate the number of encoder counts to travel 24 inches
-        double liftEncoderCountstoTravel = robot.calculateEncoderCOUNTS(4);
+        double encoderCountstoTravel = robot.calculateEncoderCounts(24);   //  Calculate the number of encoder counts to travel 24 inches
+        double liftEncoderCountstoTravel = robot.calculateEncoderCounts(4);
 
         // While the FacingCrater period is still active AND the robot has not reached the number
         // of encoder counts to travel 24 inches

@@ -78,7 +78,7 @@ public class BadFacingDepot extends LinearOpMode {
 
         robot.setDriveMotorPower(0, 0);
 
-        double totalEncoderCount = robot.calculateEncoderCOUNTS(36);
+        double totalEncoderCount = robot.calculateEncoderCounts(36);
 
         robot.setDriveMotorPower(0.5, 0.5);
 
