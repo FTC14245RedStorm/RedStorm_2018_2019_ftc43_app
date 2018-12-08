@@ -60,11 +60,16 @@ public class FacingCrater extends LinearOpMode {
 
         //we should be out of handle
         double distanceToTravel = robot.calculateEncoderCounts(4);
+        telemetry.addData("Status ", "DistTravCalc");
+        telemetry.update();
 
 
         robot.setDriveMotorPower(-.2, -.2);
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel); {
+            telemetry.addData("Status ", "MovingAwayFromLander");
+            telemetry.update();
+
         }
 
         telemetry.addData("Status ", "AwayFromLander");
