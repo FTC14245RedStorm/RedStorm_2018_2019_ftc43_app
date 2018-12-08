@@ -37,6 +37,8 @@ public class FacingCrater extends LinearOpMode {
                 System.currentTimeMillis() - startDeployTime < 3000) {
 
         }
+        telemetry.addData("Status ", "Deployed");
+        telemetry.update();
 
         robot.setLiftMotorPower(0);
 
@@ -50,8 +52,10 @@ public class FacingCrater extends LinearOpMode {
                 robot.getHeading() < 15) {
 
         }
+        telemetry.addData("Status ", "Turned");
+        telemetry.update();
 
-
+        robot.resetEncoders();
         robot.setDriveMotorPower(0, 0);
 
         //we should be out of handle
@@ -63,6 +67,8 @@ public class FacingCrater extends LinearOpMode {
                 robot.getDriveEncoderCount() < distanceToTravel); {
         }
 
+        telemetry.addData("Status ", "AwayFromLander");
+        telemetry.update();
 
 
         robot.setDriveMotorPower(-.2, .2);
@@ -71,12 +77,20 @@ public class FacingCrater extends LinearOpMode {
         while (opModeIsActive() &&
                 robot.getHeading() > 0) {
         }
+        telemetry.addData("Status ", "Straight");
+        telemetry.update();
+
         distanceToTravel = robot.calculateEncoderCounts(24);
         robot.resetEncoders();
         robot.setDriveMotorPower(-.8, -.8);
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel) {
         }
+        telemetry.addData("Status ", "TouchingCrater");
+        telemetry.update();
+
+        robot.setDriveMotorPower(0, 0);
+
 
 
         //we should now be away from handle facing the lander
