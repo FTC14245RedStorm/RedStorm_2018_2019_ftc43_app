@@ -51,8 +51,8 @@ public class CalebTeleop extends OpMode{
         double left  = -gamepad1.left_stick_y;
         double right = -gamepad1.right_stick_y;
         double lift  =  gamepad2.right_stick_y;
-        // double liftDown = gamepad1.dpad_down;
-        // double liftUp = gamepad1.dpad_up;
+        double liftDown = gamepad2.dpad_down;
+        double liftUp = gamepad2.dpad_up;
         /* Insure that the values from the gamepad for left and right will
            always be between -1.0 and 1.0.  This is done since motor powers
            can only be between -1.0 (100% reverse) and 1.0 (100% forward)
@@ -71,7 +71,7 @@ public class CalebTeleop extends OpMode{
          */
         robot.setDriveMotorPower(left, right);
 
-      //  robot.setLiftMotorPower(lift);
+        robot.setLiftMotorPower(lift);
     }
     /**
      * smoothPower will attempt to smooth or scale joystick input when driving the
