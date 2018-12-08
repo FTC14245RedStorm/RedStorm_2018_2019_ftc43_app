@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingCrater", group="FacingCrater")
+@Autonomous(name="FacingDepot", group="FacingCrater")
 
 public class FacingDepot extends LinearOpMode {
 
@@ -55,22 +55,24 @@ public class FacingDepot extends LinearOpMode {
         telemetry.update();
 
         robot.resetEncoders();
+        robot.runWithEncoders();
         robot.setDriveMotorPower(0, 0);
 
         //we should be out of handle
         double distanceToTravel = robot.calculateEncoderCounts(4);
         telemetry.addData("Status ", "DistTravCalc");
+        telemetry.addData("distance to travel: ","%5.2f",distanceToTravel);
+        telemetry.addData("enc count: ","%5.2f",robot.getDriveEncoderCount());
         telemetry.update();
-        /*
-
-         */
 
 
         robot.setDriveMotorPower(-.2, -.2);
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel); {
             telemetry.addData("Status ", "MovingAwayFromLander");
+            telemetry.addData("Enc Count:", "%5.2f",robot.getDriveEncoderCount());
             telemetry.update();
+
 
         }
 
@@ -78,29 +80,57 @@ public class FacingDepot extends LinearOpMode {
         telemetry.update();
 
 
-        robot.setDriveMotorPower(-.2, .2);
+        robot.setDriveMotorPower(-.2, 0);
 
+        double crntHeading = robot.getHeading();
+        robot.initializeIMU();
 
         while (opModeIsActive() &&
-                robot.getHeading() > 0) {
+                robot.getHeading() < 3) {
+            telemetry.addData("Initial heading: ", "%5.2f", crntHeading);
+            telemetry.addData("heading: ","%5.2f",robot.getHeading());
+            telemetry.update();
         }
         telemetry.addData("Status ", "Straight");
         telemetry.update();
 
-        distanceToTravel = robot.calculateEncoderCounts(24);
+        distanceToTravel = robot.calculateEncoderCounts(42);
         robot.resetEncoders();
+        robot.runWithEncoders();
         robot.setDriveMotorPower(-.8, -.8);
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel) {
         }
-        telemetry.addData("Status ", "TouchingCrater");
+        telemetry.addData("Status ", "InDepot");
         telemetry.update();
 
         robot.setDriveMotorPower(0, 0);
 
+        robot.initializeIMU();
+        robot.setDriveMotorPower(.5, 0);
+        while (opModeIsActive() &&
+                robot.getHeading() < 50) {
+            telemetry.addData("Initial heading: ", "%5.2f", crntHeading);
+            telemetry.addData("heading: ","%5.2f",robot.getHeading());
+            telemetry.update();
+        }
+
+        robot.setDriveMotorPower(0, 0);
+        robot.setTeamMarkerArm(0.1);
+
+        Thread.sleep(1000);
+
+        robot.setTeamMarkerGrip(.5);
+
+        Thread.sleep(1000);
+
+        robot.setTeamMarkerArm(-.5);
+
+        Thread.sleep(1000);
 
 
-        //we should now be away from handle facing the lander
+
+
 
     }
 }

@@ -218,8 +218,8 @@ public class Robot {
      */
     public void initializeServosAutonomous() {
 
-       // teamMarkerArm.setPosition(-0.25);
-        //teamMarkerGrip.setPosition(0);
+       teamMarkerArm.setPosition(-.5);
+       teamMarkerGrip.setPosition(0);
 
 
     }
