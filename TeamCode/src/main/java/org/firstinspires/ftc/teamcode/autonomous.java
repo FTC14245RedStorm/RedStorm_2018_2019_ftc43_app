@@ -20,13 +20,13 @@ public class autonomous extends LinearOpMode {
         telemetry.addData("Status ", "Initialized");
         telemetry.update();
 
-        waitForStart();
 
         double startDeployTime = System.currentTimeMillis();
 
         robot.setLiftServo(.6);
 
         Thread.sleep(1000);
+        waitForStart();
 
         robot.setLiftMotorPower(-.2);
 
