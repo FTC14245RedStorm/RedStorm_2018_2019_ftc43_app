@@ -56,11 +56,14 @@ public class FacingCrater extends LinearOpMode {
         telemetry.update();
 
         robot.resetEncoders();
+        robot.runWithEncoders();
         robot.setDriveMotorPower(0, 0);
 
         //we should be out of handle
         double distanceToTravel = robot.calculateEncoderCounts(4);
         telemetry.addData("Status ", "DistTravCalc");
+        telemetry.addLine().addData("distance to travel: ",distanceToTravel);
+        telemetry.addLine().addData("enc count: ",robot.getDriveEncoderCount());
         telemetry.update();
 
 
@@ -68,7 +71,9 @@ public class FacingCrater extends LinearOpMode {
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel); {
             telemetry.addData("Status ", "MovingAwayFromLander");
+            telemetry.addData("Enc Count:", robot.getDriveEncoderCount());
             telemetry.update();
+
 
         }
 
@@ -78,15 +83,21 @@ public class FacingCrater extends LinearOpMode {
 
         robot.setDriveMotorPower(-.2, .2);
 
+        telemetry.addData("current heading:",robot.getHeading());
+        telemetry.update();
+        robot.initializeIMU();
 
         while (opModeIsActive() &&
-                robot.getHeading() > 0) {
+                robot.getHeading() < 10) {
+            telemetry.addData("heading: ",robot.getHeading());
+            telemetry.update();
         }
         telemetry.addData("Status ", "Straight");
         telemetry.update();
 
         distanceToTravel = robot.calculateEncoderCounts(24);
         robot.resetEncoders();
+        robot.runWithEncoders();
         robot.setDriveMotorPower(-.8, -.8);
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel) {

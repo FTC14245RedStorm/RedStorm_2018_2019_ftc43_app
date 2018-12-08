@@ -91,10 +91,7 @@ public class Robot {
         liftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         imu = hwMap.get(BNO055IMU.class, "imu");
-        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
-        parameters.mode = BNO055IMU.SensorMode.IMU;
-        imu.initialize(parameters);
-
+        initializeIMU();
         initializeServosAutonomous();
     }
 
@@ -169,8 +166,8 @@ public class Robot {
         double rightEncoderCount;
         double averageEncoderCount;
 
-        leftEncoderCount = leftDrive.getCurrentPosition();      // Get the current encoder count for the left motor
-        rightEncoderCount = rightDrive.getCurrentPosition();    // Get the current encoder count for the right motor
+        leftEncoderCount = Math.abs(leftDrive.getCurrentPosition());      // Get the current encoder count for the left motor
+        rightEncoderCount = Math.abs(rightDrive.getCurrentPosition());    // Get the current encoder count for the right motor
 
         averageEncoderCount = (leftEncoderCount + rightEncoderCount) / 2.0;  // Calculate the average
 
@@ -182,7 +179,7 @@ public class Robot {
     public double getLiftEncoderCount() {
        double LiftEncoderCount;
 
-       LiftEncoderCount = liftMotor.getCurrentPosition(); //Get the current encoder count for the lift motor
+       LiftEncoderCount = Math.abs(liftMotor.getCurrentPosition()); //Get the current encoder count for the lift motor
 
         return LiftEncoderCount;  }
 
@@ -195,7 +192,7 @@ public class Robot {
     public double getLeftDriveEncoderCounts() {
         double leftEncoderCount;
 
-        leftEncoderCount = leftDrive.getCurrentPosition();      // Get the current encoder count for the left motor
+        leftEncoderCount = Math.abs(leftDrive.getCurrentPosition());      // Get the current encoder count for the left motor
 
 
 
@@ -211,7 +208,7 @@ public class Robot {
 
 
 
-        rightEncoderCount = rightDrive.getCurrentPosition();    // Get the current encoder count for the right motor
+        rightEncoderCount = Math.abs(rightDrive.getCurrentPosition());    // Get the current encoder count for the right motor
 
 
         return rightEncoderCount;
@@ -305,5 +302,12 @@ public class Robot {
     public double getFrontDistance() {
 
         return frontRange.getDistance(DistanceUnit.INCH);
+    }
+
+    public void initializeIMU() {
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.mode = BNO055IMU.SensorMode.IMU;
+        imu.initialize(parameters);
+
     }
     }
