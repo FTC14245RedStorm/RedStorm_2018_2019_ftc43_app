@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="Turning with Gyro", group="gyro")
+@Autonomous
 
 public class FacingDepotAuto extends LinearOpMode {
 
     public Robot robot = new Robot();    // Create a new instance of the robot
 
-    public void runOpMode () {
+    public void runOpMode () throws InterruptedException {
 
 
         robot.initialize(hardwareMap);  // Initialize robot
@@ -23,18 +23,76 @@ public class FacingDepotAuto extends LinearOpMode {
         // Wait for start button
         waitForStart();
 
-        // Put deploy code here
+        double startDeployTime = System.currentTimeMillis();
 
-        while(opModeIsActive())  {
-            telemetry.addData("Status", "opModeIsActive")
+        robot.setLiftServo(.6);
 
-            robot.setDriveMotorPower(-0.5, -0.5);
+        Thread.sleep(1000);
+
+        robot.setLiftMotorPower(-.2);
+
+        while (opModeIsActive() &&
+                robot.getLiftEncoderCount() < 135
+                &&
+                System.currentTimeMillis() - startDeployTime < 3000) {
+
+        }
+
+        robot.setLiftMotorPower(0);
+
+        Thread.sleep(1000);
+
+        //we should be dismounted from space lander
+
+        robot.setDriveMotorPower(.2, -.2);
+
+        while (opModeIsActive() &&
+                robot.getHeading() < 10) {
+
+        }
+
+
+        robot.setDriveMotorPower(0, 0);
+
+        //we should be out of handle
+
+
+        robot.setDriveMotorPower(-.2, -.2);
+        while (opModeIsActive() &&
+                robot.getRightDriveEncoderCounts() < 4) {
+        }
+
+        while (opModeIsActive() &&
+                robot.getLeftDriveEncoderCounts() < 4) {
+
+        }
+        robot.setDriveMotorPower(0, 0);
+
+
+        robot.setDriveMotorPower(-.2, .2);
+
+        while (opModeIsActive() &&
+                robot.getHeading() > 0) {
+        }
+
+
+        robot.setDriveMotorPower(0, 0);
+
+        double totalEncoderCount = robot.calculateEncoderCOUNTS(36);
+
+        robot.setDriveMotorPower(0.5, 0.5);
+
+        while(opModeIsActive() && robot.getLeftDriveEncoderCounts() < totalEncoderCount){
+            telemetry.addData("Status", "opModeIsActive");
+
             telemetry.addData("Left Drive Encoder Counts", "(%.0f)",robot.getLeftDriveEncoderCounts());
             telemetry.addData("Right Drive Encoder Counts", "(%.0f)",robot.getRightDriveEncoderCounts());   // Drive backwards until arrived at depot
             telemetry.update();
 
         }
         robot.setDriveMotorPower(0.0, 0.0);  // Robot stops
+
+        
 
         robot.setDriveMotorPower(-0.5, 0.5);  // Robot turns 90 degrees to deposit team marker
 
@@ -43,17 +101,17 @@ public class FacingDepotAuto extends LinearOpMode {
         }
         robot.setDriveMotorPower(0,0);  //stop turning Robot
 
-        // Deposit the marker
+        // deposit marker
 
         while (opModeIsActive()) {
             telemetry.addData("left distance", robot.getLeftDistance());
             telemetry.addData("right distance", robot.getRightDistance());
-            telemetry.addData("front distance", robot.getFrontDistance());       // Drive along the wall until crater
+            telemetry.addData("front distance", robot.getFrontDistance());       // Drive along the wall until crater and drive straight into crater
             telemetry.update();
 
         }
 
-        // Drive straight into crater/onto crater   `
+
 
     }
 

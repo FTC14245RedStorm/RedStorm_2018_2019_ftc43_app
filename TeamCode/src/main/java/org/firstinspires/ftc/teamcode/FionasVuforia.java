@@ -289,9 +289,9 @@ public class FionasVuforia extends LinearOpMode {
 
                     }
                     telemetry.addData("Visible Target", trackable.getName());
-                    targetVisible = true;    \
+                    targetVisible = true;
 
-                    \\
+
 
 
 

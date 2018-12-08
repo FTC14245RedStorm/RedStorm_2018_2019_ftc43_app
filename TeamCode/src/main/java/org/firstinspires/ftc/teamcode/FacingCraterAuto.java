@@ -1,23 +1,18 @@
 package org.firstinspires.ftc.teamcode;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingCrater", group="autonomous")
+@Autonomous
+
+public class FacingCraterAuto extends LinearOpMode {
+
+    public Robot robot = new Robot();    // Create a new instance of the robot
+
+    public void runOpMode () throws InterruptedException {
 
 
-
-
-
-public class autonomous extends LinearOpMode {
-
-    public Robot robot = new Robot();
-
-    @Override
-    public void runOpMode() throws InterruptedException{
         robot.initialize(hardwareMap);             // Initialize the robot
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
@@ -51,7 +46,7 @@ public class autonomous extends LinearOpMode {
         robot.setDriveMotorPower(.2, -.2);
 
         while (opModeIsActive() &&
-                robot.getHeading() < 15) {
+                robot.getHeading() < 10) {
 
         }
 
@@ -66,10 +61,10 @@ public class autonomous extends LinearOpMode {
                 robot.getRightDriveEncoderCounts() < 4) {
         }
 
-       // while (opModeIsActive() &&
-       //         robot.getLeftDriveEncoderCounts() < 4) {
+        while (opModeIsActive() &&
+                robot.getLeftDriveEncoderCounts() < 4) {
 
-        //}
+        }
         robot.setDriveMotorPower(0, 0);
 
 
@@ -80,12 +75,26 @@ public class autonomous extends LinearOpMode {
         }
 
 
-        robot.setDriveMotorPower(-.8, -.8);
+        robot.setDriveMotorPower(0, 0);
 
-        //we should now be away from handle facing the lander
+        //robot is out of lander
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
 }
-
-
 
