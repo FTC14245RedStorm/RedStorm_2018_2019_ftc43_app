@@ -37,7 +37,7 @@ public class RedStormSampleAuto extends LinearOpMode {
         double encoderCountstoTravel = robot.calculateEncoderCOUNTS(24);   //  Calculate the number of encoder counts to travel 24 inches
         double liftEncoderCountstoTravel = robot.calculateEncoderCOUNTS(4);
 
-        // While the autonomous period is still active AND the robot has not reached the number
+        // While the FacingCrater period is still active AND the robot has not reached the number
         // of encoder counts to travel 24 inches
         while(opModeIsActive()) {
 

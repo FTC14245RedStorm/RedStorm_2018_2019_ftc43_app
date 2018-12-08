@@ -35,7 +35,7 @@ public class EncoderTest extends LinearOpMode {
 
 
 
-        // While the autonomous period is still active AND the robot has not reached the number
+        // While the FacingCrater period is still active AND the robot has not reached the number
         // of encoder counts to travel 24 inches
         while(opModeIsActive()) {
 

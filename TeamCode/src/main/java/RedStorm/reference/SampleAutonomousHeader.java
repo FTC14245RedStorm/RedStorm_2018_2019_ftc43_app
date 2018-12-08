@@ -9,14 +9,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public abstract class SampleAutonomousHeader extends LinearOpMode { // This line establishes this
     // program as a public abstract class that extends the header file "LinearOpMode". This makes
-    // it a header file in itself that the real autonomous op modes will extend. It is considered
-    // abstract because it simply contains the framework for the autonomous op modes (creating void
+    // it a header file in itself that the real FacingCrater op modes will extend. It is considered
+    // abstract because it simply contains the framework for the FacingCrater op modes (creating void
     // methods and such) and does not yet translate to actual movement on the robot.
 
     DcMotor motorLeft, motorRight; // This line establishes the names of the motors we will be
                                    // using.
 
-    public void initialize() { // This public void will go at the start of each autonomous op mode
+    public void initialize() { // This public void will go at the start of each FacingCrater op mode
         // and will serve as the initialization routine the robot undergoes.
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");   // These lines establish a link between
@@ -31,7 +31,7 @@ public abstract class SampleAutonomousHeader extends LinearOpMode { // This line
                                                             // mirror each other.
     }
 
-    public void move(double left, double right) { // This public void is called in the autonomous
+    public void move(double left, double right) { // This public void is called in the FacingCrater
                                                   // op modes whenever the motors on the robot need
                                                   // to be turned on. It has two parameters: the
                                                   // speed of the left motor and the speed of the

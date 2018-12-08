@@ -217,7 +217,7 @@ public class Robot {
         return rightEncoderCount;
     }
     /**
-     * This method will initialize all of the servos in autonomous
+     * This method will initialize all of the servos in FacingCrater
      */
     public void initializeServosAutonomous() {
 
@@ -227,7 +227,7 @@ public class Robot {
 
     }
     /**
-     * This method will initialize all of the servos in autonomous
+     * This method will initialize all of the servos in FacingCrater
      */
     public void setTeamMarkerArm(double servoPosition) {
 
@@ -237,7 +237,7 @@ public class Robot {
 
     }
     /**
-     * This method will initialize all of the servos in autonomous
+     * This method will initialize all of the servos in FacingCrater
      */
     public void setTeamMarkerGrip(double servoPosition) {
 

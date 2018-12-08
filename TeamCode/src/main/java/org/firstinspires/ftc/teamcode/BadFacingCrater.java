@@ -1,18 +1,18 @@
 package org.firstinspires.ftc.teamcode;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="Autonomous", group="autonomous")
+@Autonomous
 
-public class autonomous extends LinearOpMode {
+public class BadFacingCrater extends LinearOpMode {
 
-    public Robot robot = new Robot();
+    public Robot robot = new Robot();    // Create a new instance of the robot
 
-    @Override
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode () throws InterruptedException {
+
+
         robot.initialize(hardwareMap);             // Initialize the robot
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
@@ -77,10 +77,24 @@ public class autonomous extends LinearOpMode {
 
         robot.setDriveMotorPower(0, 0);
 
-        //we should now be away from handle facing the lander
+        //robot is out of lander
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
 }
-
-
 

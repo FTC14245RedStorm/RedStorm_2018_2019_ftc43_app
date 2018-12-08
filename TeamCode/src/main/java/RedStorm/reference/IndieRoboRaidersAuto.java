@@ -56,7 +56,7 @@ public abstract class IndieRoboRaidersAuto extends LinearOpMode {
     public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.85;    // Position where the jewel arm needs to be to read the jewel color
 
     /**
-     * This method will initialize Vuforia in autonomous op modes
+     * This method will initialize Vuforia in FacingCrater op modes
      *
      * @param hwMap the hardware map we will be using
      */
@@ -671,7 +671,7 @@ public abstract class IndieRoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method will help the drive team to align the robot prior to autonomous using the range sensor
+     * This method will help the drive team to align the robot prior to FacingCrater using the range sensor
      *
      * @param bot the bot currently being worked on
      */

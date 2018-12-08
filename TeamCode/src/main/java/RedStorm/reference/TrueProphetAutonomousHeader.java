@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This line establishes this program as a public abstract class
     // that extends the header file "LinearOpMode". This makes it
-    // a header file itself that the real autonomous op modes will
+    // a header file itself that the real FacingCrater op modes will
     // extend.
 
     DcMotor motorArm, motorLift, motorFrontLeft, motorFrontRight, motorBackLeft, motorBackRight, redLED, blueLED; // These
@@ -38,7 +38,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
 
 
 
-    public void initEverything() { // This public void will go at the start of each autonomous op mode and will serve as
+    public void initEverything() { // This public void will go at the start of each FacingCrater op mode and will serve as
         // the initialization routine the robot undergoes.
 
         // Motors \\                                                  // These lines establish a link between the code
@@ -57,7 +57,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE); // to make the robot drive straight.
 
         if (teamColor == 1) {      // This if statement sets the color of the LEDs depending on which value teamColor
-            // is declared as in each autonomous op mode.
+            // is declared as in each FacingCrater op mode.
             blueLED.setPower(1);
         }
         else if (teamColor == 2) {
@@ -105,7 +105,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
 
 
 
-    public void moveWheels (int distance, double power) { // This public void is called in the autonomous op modes
+    public void moveWheels (int distance, double power) { // This public void is called in the FacingCrater op modes
         // whenever the robot has to move forward or backward using
         // encoders. It has two parameters: distance in centimeters
         // the robot should travel and the power the motors should
@@ -256,7 +256,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
         }
 
         if (teamColor == 1) { // This if statement sets the color of the LEDs depending on which value teamColor
-            // is declared as in each autonomous op mode.
+            // is declared as in each FacingCrater op mode.
 
             blueLED.setPower(1);
         }
@@ -268,7 +268,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
 
 
 
-    public void gyroTurnRight (int degrees, double power) { // This public void is called in the autonomous op modes
+    public void gyroTurnRight (int degrees, double power) { // This public void is called in the FacingCrater op modes
         // whenever the robot has to turn right using the gyro
         // sensor. It has two parameters: the number of degrees
         // the robot should rotate and the power the motors should
@@ -313,7 +313,7 @@ public abstract class TrueProphetAutonomousHeader extends LinearOpMode { // This
         // its target value) the power of the motors is set to 0."
     }
 
-    public void gyroTurnLeft (int degrees, double power) { // This public void is called in the autonomous op modes
+    public void gyroTurnLeft (int degrees, double power) { // This public void is called in the FacingCrater op modes
         // whenever the robot has to turn left using the gyro
         // sensor. It has two parameters: the number of degrees
         // the robot should rotate and the power the motors should

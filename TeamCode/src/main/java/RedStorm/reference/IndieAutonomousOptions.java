@@ -53,7 +53,7 @@ public class IndieAutonomousOptions extends IndieRoboRaidersAuto {
         // exit.
         selectedOptions[0][1] = "no";
 
-        // Configure for Indie autonomous while the selections are not finalized
+        // Configure for Indie FacingCrater while the selections are not finalized
         while (selectedOptions[0][1].equals("no")) {
 
             //                        Prompt            Responses    Index  Options output

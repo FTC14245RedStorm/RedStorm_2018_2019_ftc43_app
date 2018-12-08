@@ -130,7 +130,7 @@ public class IndieRobot {
     }
 
     /**
-     * This method will initialize all of the servos in autonomous
+     * This method will initialize all of the servos in FacingCrater
      */
     public void initializeServosAutonomous() {
 
