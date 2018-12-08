@@ -27,7 +27,7 @@ public class FacingCrater extends LinearOpMode {
 
         robot.setLiftServo(.6);
 
-        Thread.sleep(1000);
+        Thread.sleep(250);
 
         robot.setLiftMotorPower(-.2);
 
@@ -40,7 +40,7 @@ public class FacingCrater extends LinearOpMode {
 
         robot.setLiftMotorPower(0);
 
-        Thread.sleep(1000);
+        Thread.sleep( 500);
 
         //we should be dismounted from space lander
 
@@ -55,6 +55,7 @@ public class FacingCrater extends LinearOpMode {
         robot.setDriveMotorPower(0, 0);
 
         //we should be out of handle
+        double distanceToTravel = robot.calculateEncoderCounts(4);
 
 
         robot.setDriveMotorPower(-.2, -.2);

@@ -146,7 +146,7 @@ public class Robot {
      * @return counts - the number of encoder counts the robot will travel that is equal
      * to the number of inches
      */
-    public double calculateEncoderCOUNTS(double distance) {
+    public double calculateEncoderCounts(double distance) {
 
         double encoderCounts;
         double rotations;
