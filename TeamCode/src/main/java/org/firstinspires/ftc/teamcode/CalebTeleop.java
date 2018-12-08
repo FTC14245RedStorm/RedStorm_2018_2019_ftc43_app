@@ -51,8 +51,31 @@ public class CalebTeleop extends OpMode{
         double left  = -gamepad1.left_stick_y;
         double right = -gamepad1.right_stick_y;
         double lift  =  gamepad2.right_stick_y;
-        double liftDown = gamepad2.dpad_down;
-        double liftUp = gamepad2.dpad_up;
+        boolean gripperOpen = gamepad2.a;
+        boolean gripperClose = gamepad2.b;
+        boolean armUp = gamepad2.x;
+        boolean armDown = gamepad2.y;
+
+        if (gripperOpen == true) {
+            robot.setTeamMarkerGrip(.5);
+        }
+        if (gripperClose == true) {
+            robot.setTeamMarkerGrip(0);
+        }
+
+        if (armUp == true) {
+            robot.setTeamMarkerArm(-.5);
+        }
+        if (armDown == true) {
+            robot.setTeamMarkerArm(.1);
+        }
+
+
+
+
+
+
+
         /* Insure that the values from the gamepad for left and right will
            always be between -1.0 and 1.0.  This is done since motor powers
            can only be between -1.0 (100% reverse) and 1.0 (100% forward)
@@ -70,6 +93,19 @@ public class CalebTeleop extends OpMode{
         /* Set the motor power for the robot.
          */
         robot.setDriveMotorPower(left, right);
+
+        boolean liftDown = gamepad2.dpad_down;
+        boolean liftUp = gamepad2.dpad_up;
+
+        if (liftDown == true) {
+            robot.setLiftServo(.4);
+        }
+
+        if (liftUp == true) {
+            robot.setLiftServo(.6);
+        }
+
+
 
         robot.setLiftMotorPower(lift);
     }
