@@ -62,8 +62,8 @@ public class FacingCrater extends LinearOpMode {
         //we should be out of handle
         double distanceToTravel = robot.calculateEncoderCounts(4);
         telemetry.addData("Status ", "DistTravCalc");
-        telemetry.addLine().addData("distance to travel: ",distanceToTravel);
-        telemetry.addLine().addData("enc count: ",robot.getDriveEncoderCount());
+        telemetry.addData("distance to travel: ","%5.2f",distanceToTravel);
+        telemetry.addData("enc count: ","%5.2f",robot.getDriveEncoderCount());
         telemetry.update();
 
 
@@ -71,7 +71,7 @@ public class FacingCrater extends LinearOpMode {
         while (opModeIsActive() &&
                 robot.getDriveEncoderCount() < distanceToTravel); {
             telemetry.addData("Status ", "MovingAwayFromLander");
-            telemetry.addData("Enc Count:", robot.getDriveEncoderCount());
+            telemetry.addData("Enc Count:", "%5.2f",robot.getDriveEncoderCount());
             telemetry.update();
 
 
@@ -83,13 +83,13 @@ public class FacingCrater extends LinearOpMode {
 
         robot.setDriveMotorPower(-.2, .2);
 
-        telemetry.addData("current heading:",robot.getHeading());
-        telemetry.update();
+        double crntHeading = robot.getHeading();
         robot.initializeIMU();
 
         while (opModeIsActive() &&
                 robot.getHeading() < 10) {
-            telemetry.addData("heading: ",robot.getHeading());
+            telemetry.addData("Initial heading: ", "%5.2f", crntHeading);
+            telemetry.addData("heading: ","%5.2f",robot.getHeading());
             telemetry.update();
         }
         telemetry.addData("Status ", "Straight");
