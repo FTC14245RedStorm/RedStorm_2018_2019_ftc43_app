@@ -55,6 +55,8 @@ public class CalebTeleop extends OpMode{
         boolean gripperClose = gamepad2.b;
         boolean armUp = gamepad2.x;
         boolean armDown = gamepad2.y;
+ // setting variables for all of the functions I want to be able to do
+
 
         if (gripperOpen == true) {
             robot.setTeamMarkerGrip(.5);
@@ -62,6 +64,7 @@ public class CalebTeleop extends OpMode{
         if (gripperClose == true) {
             robot.setTeamMarkerGrip(0);
         }
+// one button opens the gripper, and one closes it
 
         if (armUp == true) {
             robot.setTeamMarkerArm(-.5);
@@ -69,8 +72,19 @@ public class CalebTeleop extends OpMode{
         if (armDown == true) {
             robot.setTeamMarkerArm(.1);
         }
+//you can raise and lower the arm
 
+        boolean liftDown = gamepad2.dpad_down;
+        boolean liftUp = gamepad2.dpad_up;
 
+        if (liftDown == true) {
+            robot.setLiftServo(.4);
+        }
+
+        if (liftUp == true) {
+            robot.setLiftServo(.6);
+        }
+//allows us to push the hook in and out of the gear
 
 
 
@@ -94,20 +108,9 @@ public class CalebTeleop extends OpMode{
          */
         robot.setDriveMotorPower(left, right);
 
-        boolean liftDown = gamepad2.dpad_down;
-        boolean liftUp = gamepad2.dpad_up;
-
-        if (liftDown == true) {
-            robot.setLiftServo(.4);
-        }
-
-        if (liftUp == true) {
-            robot.setLiftServo(.6);
-        }
-
-
-
         robot.setLiftMotorPower(lift);
+  // setting lift power for the robot
+
     }
     /**
      * smoothPower will attempt to smooth or scale joystick input when driving the
