@@ -60,24 +60,24 @@ public class FacingCrater extends LinearOpMode {
 
         robot.setDriveMotorPower(-.2, -.2);
         while (opModeIsActive() &&
-                robot.getRightDriveEncoderCounts() < 4) {
+                robot.getDriveEncoderCount() < distanceToTravel); {
         }
 
-       // while (opModeIsActive() &&
-       //         robot.getLeftDriveEncoderCounts() < 4) {
-
-        //}
-        robot.setDriveMotorPower(0, 0);
 
 
         robot.setDriveMotorPower(-.2, .2);
 
+
         while (opModeIsActive() &&
                 robot.getHeading() > 0) {
         }
-
-
+        distanceToTravel = robot.calculateEncoderCounts(24);
+        robot.resetEncoders();
         robot.setDriveMotorPower(-.8, -.8);
+        while (opModeIsActive() &&
+                robot.getDriveEncoderCount() < distanceToTravel) {
+        }
+
 
         //we should now be away from handle facing the lander
 
