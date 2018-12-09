@@ -103,7 +103,8 @@ public class CalebTeleop extends OpMode{
          */
         left  = smoothPower(left);
         right = smoothPower(right);
-        lift = smoothPower(lift);
+        lift = smoothPower(lift * .75);
+        // making power less for remote
         /* Set the motor power for the robot.
          */
         robot.setDriveMotorPower(left, right);
