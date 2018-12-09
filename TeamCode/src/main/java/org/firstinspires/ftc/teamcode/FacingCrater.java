@@ -106,6 +106,20 @@ public class FacingCrater extends LinearOpMode {
         telemetry.update();
 
         robot.setDriveMotorPower(0, 0);
+        //Turning robot to extend arm into crater
+        robot.initializeIMU();
+        while (opModeIsActive() &&
+                robot.getHeading() < 90) {
+            telemetry.addData("Initial heading: ", "%5.2f", crntHeading);
+            telemetry.addData("heading: ", "%5.2f", robot.getHeading());
+            telemetry.update();
+        }
+        robot.setDriveMotorPower(0, 0);
+        robot.setTeamMarkerArm(.1);  //Extend arm into crater
+
+
+
+
 
 
 

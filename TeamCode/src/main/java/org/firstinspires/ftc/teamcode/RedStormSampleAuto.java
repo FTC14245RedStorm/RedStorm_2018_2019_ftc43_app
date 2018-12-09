@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 import RedStorm.Robot.Robot;
 
 @Autonomous (name="Sample Auto", group="Samples")
+@Disabled
 
 /**
  * Created by Steve Kocik as a sample for RedStorm to build off of...

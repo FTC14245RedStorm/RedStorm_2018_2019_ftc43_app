@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
 @Autonomous
-
+@Disabled
 public class BadFacingCrater extends LinearOpMode {
 
     public Robot robot = new Robot();    // Create a new instance of the robot

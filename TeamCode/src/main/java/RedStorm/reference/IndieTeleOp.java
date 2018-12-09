@@ -1,5 +1,6 @@
 package RedStorm.reference;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp
+@Disabled
 
 public class IndieTeleOp extends OpMode {
 
