@@ -32,8 +32,8 @@ public class FacingCrater extends LinearOpMode {
         robot.setLiftMotorPower(-.2);
 
         while (opModeIsActive() &&
-                robot.getLiftEncoderCount() < 135
-                &&
+         //       robot.getLiftEncoderCount() < 135
+         //       &&
                 System.currentTimeMillis() - startDeployTime < 3000) {
 
         }
