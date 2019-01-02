@@ -39,18 +39,18 @@ public class EncoderTest extends LinearOpMode {
         // of encoder counts to travel 24 inches
         while(opModeIsActive()) {
 
-            telemetry.addData("Status ", "opModeIsActive");
+        telemetry.addData("Status ", "opModeIsActive");
 
 
-            robot.setDriveMotorPower(0.5, 0.50);   // Set power to 50%
-            telemetry.addData("Left Drive Encoder Counts", "(%.0f)",robot.getLeftDriveEncoderCounts());
-            telemetry.addData("Right Drive Encoder Counts", "(%.0f)", robot.getRightDriveEncoderCounts());
+        robot.setDriveMotorPower(0.5, 0.50);   // Set power to 50%
+        telemetry.addData("Left Drive Encoder Counts", "(%.0f)",robot.getLeftDriveEncoderCounts());
+        telemetry.addData("Right Drive Encoder Counts", "(%.0f)", robot.getRightDriveEncoderCounts());
 
 
-            telemetry.update();
-        }
+        telemetry.update();
+    }
 
 
         robot.setDriveMotorPower(0.0,0.0);         // Motors stop
-    }
+}
 }
