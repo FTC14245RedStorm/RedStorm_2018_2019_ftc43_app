@@ -40,7 +40,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
-
 //@Disabled
 @TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
 public class CalebTensorFlowObjectDetection extends LinearOpMode {
@@ -105,6 +104,9 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                             silverMineral2X = (int) recognition.getLeft();
                           }
                         }
+                        telemetry.addLine().addData("goldMineral",goldMineralX);
+                        telemetry.addLine().addData("silverMineral",silverMineral1X);
+                        telemetry.addLine().addData("silverMineral2X",silverMineral2X);
                         if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
                           if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
