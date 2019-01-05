@@ -40,7 +40,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
-@Disabled
+//@Disabled
 @TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
 public class CalebTensorFlowObjectDetection extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
@@ -89,7 +89,7 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
-                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                       telemetry.addData("# Object Detected", updatedRecognitions.size());
                       if (updatedRecognitions.size() == 3) {
@@ -142,7 +142,7 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
             tfod.shutdown();
         }
 
-       // Switch(goldLocation)
+        Switch(goldLocation)
 
     }
 
