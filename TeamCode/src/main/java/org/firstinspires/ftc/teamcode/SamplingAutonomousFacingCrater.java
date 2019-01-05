@@ -151,7 +151,7 @@ public class SamplingAutonomousFacingCrater extends LinearOpMode {
                 }
 
 
-            }
+
 
             /**
              * Initialize the Vuforia localization engine.
