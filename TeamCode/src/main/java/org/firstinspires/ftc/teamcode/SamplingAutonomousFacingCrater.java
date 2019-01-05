@@ -29,7 +29,7 @@ public class SamplingAutonomousFacingCrater extends LinearOpMode {
 
         waitForStart();
 
-        private class CalebTensorFlowObjectDetection extends LinearOpMode {
+         class CalebTensorFlowObjectDetection extends LinearOpMode {
             private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
             private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
             private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
