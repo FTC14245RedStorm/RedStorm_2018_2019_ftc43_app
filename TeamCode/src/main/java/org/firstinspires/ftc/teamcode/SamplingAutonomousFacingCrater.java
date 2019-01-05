@@ -131,17 +131,17 @@ public class SamplingAutonomousFacingCrater extends LinearOpMode {
                 //cleaner than if statements
                 switch(goldLocation) {
                     case 1: {
-                        //stuff
+                        //turn left to face mineral, knock it, turn right to face crater
                         break;
                     }
 
                     case 2: {
-                        //stuff
+                        //go straight ahead, knock mineral
                         break;
                     }
 
                     case 3: {
-                        //stuff
+                        //turn right to face mineral, knock it, turn left to face crater
                         break;
                     }
                 }
