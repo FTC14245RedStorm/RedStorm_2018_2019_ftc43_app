@@ -60,6 +60,7 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
      * Detection engine.
      */
     private TFObjectDetector tfod;
+    private int goldLocation = -1;
 
     @Override
     public void runOpMode() {
@@ -94,6 +95,8 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                       if (updatedRecognitions.size() == 3) {
                         int goldMineralX = -1;
                         int silverMineral1X = -1;
+
+                        // Find the position of the minerals
                         int silverMineral2X = -1;
                         for (Recognition recognition : updatedRecognitions) {
                           if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
@@ -107,14 +110,24 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                         telemetry.addLine().addData("goldMineral",goldMineralX);
                         telemetry.addLine().addData("silverMineral",silverMineral1X);
                         telemetry.addLine().addData("silverMineral2X",silverMineral2X);
+
+                        // Did we find all of the minerals
                         if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
 
+                          // Is the gold mineral at the leftmost position
                           if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
-                          } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                            goldLocation = 1;
+                          }
+                          // Is the gold mineral at the rightmost position
+                          else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Right");
-                          } else {
+                            goldLocation = 3;
+                          }
+                          // The gold mineral at the center position
+                          else {
                             telemetry.addData("Gold Mineral Position", "Center");
+                            goldLocation = 2;
                           }
                           tfod.shutdown();
                         }
@@ -128,6 +141,9 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
+
+        Switch(goldLocation)
+
     }
 
     /**
