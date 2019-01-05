@@ -17,6 +17,7 @@ public class FacingDepot extends LinearOpMode {
         robot.initialize(hardwareMap);             // Initialize the robot
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
+        //robot.setLiftServo(.4);
 
         telemetry.addData("Status ", "Initialized");
         telemetry.update();

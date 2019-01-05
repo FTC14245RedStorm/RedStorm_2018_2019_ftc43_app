@@ -15,7 +15,6 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 import RedStorm.Robot.Robot;
 
 @Autonomous(name="Drive Along Wall", group="distance")
-@Disabled
 
 public class driveAlongWall extends LinearOpMode {
 
@@ -46,7 +45,7 @@ public class driveAlongWall extends LinearOpMode {
             robot.resetEncoders();
             robot.runWithEncoders();
 
-            wallDistanceToTravel = robot.calculateEncoderCounts(36);
+            wallDistanceToTravel = robot.calculateEncoderCounts(72);
 
             robot.setDriveMotorPower(0.5, 0.5);
 
@@ -62,11 +61,11 @@ public class driveAlongWall extends LinearOpMode {
 
                 if (distanceFromWall > 250) {
                     if (remember.equals("right")) {
-                        robot.setDriveMotorPower(0.45, 0.55);
+                        robot.setDriveMotorPower(0.4, 0.6);
                     }
                     else {
                         if (remember.equals("left")) {
-                            robot.setDriveMotorPower(0.55, 0.45);
+                            robot.setDriveMotorPower(0.6, .4);
                         }
                         else {
                             robot.setDriveMotorPower(0.5, 0.5);
@@ -76,19 +75,19 @@ public class driveAlongWall extends LinearOpMode {
                 }
 
                 if (distanceFromWall > 5.0) {
-                    robot.setDriveMotorPower(0.55, 0.45);
+                    robot.setDriveMotorPower(0.6, 0.4);
                     telemetry.addLine("turning right - towards wall");
                     remember = "right";
                 }
                 else {
                     if (distanceFromWall < 3.0) {
-                        robot.setDriveMotorPower(0.45, 0.55);
+                        robot.setDriveMotorPower(0.4, 0.6);
                         telemetry.addLine("turning left - away from wall ");
                         remember = "left";
                     }
                     else {
                         robot.setDriveMotorPower(0.5, 0.5);
-                        telemetry.addLine("not turning going straight");
+                        telemetry.addLine("Not turning, going straight");
                         remember = "straight";
                     }
                 }
