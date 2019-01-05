@@ -142,7 +142,8 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
             tfod.shutdown();
         }
 
-        Switch(goldLocation)
+        //Switch(goldLocation)
+
 
     }
 
