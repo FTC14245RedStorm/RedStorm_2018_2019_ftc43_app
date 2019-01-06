@@ -11,7 +11,7 @@ import java.util.List;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingDepot", group="FacingCrater")
+@Autonomous(name="SamplingFacingCrater", group="Crater")
 
 
 public class  SamplingAutonomousFacingCrater extends LinearOpMode {
@@ -27,7 +27,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.addData("Status ", "Initialized");
         telemetry.update();
 
-        waitForStart();
+
 
          class CalebTensorFlowObjectDetection extends LinearOpMode {
             private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
