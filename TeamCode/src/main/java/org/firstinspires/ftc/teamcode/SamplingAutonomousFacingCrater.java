@@ -73,54 +73,8 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
             while (opModeIsActive()) {
 
                 // make all of this a method called detectGoldMineralPosition
-                if (tfod != null) {
-                    // getUpdatedRecognitions() will return null if no new information is available since
-                    // the last time that call was made.
-                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                    if (updatedRecognitions != null) {
-                        telemetry.addData("# Object Detected", updatedRecognitions.size());
-                        if (updatedRecognitions.size() == 3) {
+                goldLocation = detectGoldMineralPosition();
 
-                            // Find the position of the minerals
-
-                            for (Recognition recognition : updatedRecognitions) {
-                                if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                                    goldMineralX = (int) recognition.getLeft();
-                                } else if (silverMineral1X == -1) {
-                                    silverMineral1X = (int) recognition.getLeft();
-                                } else {
-                                    silverMineral2X = (int) recognition.getLeft();
-                                }
-                            }
-
-                            telemetry.addLine().addData("goldMineral", goldMineralX);
-                            telemetry.addLine().addData("silverMineral", silverMineral1X);
-                            telemetry.addLine().addData("silverMineral2X", silverMineral2X);
-
-                            // Did we find all of the minerals
-                            if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-
-                                // Is the gold mineral at the leftmost position
-                                if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
-                                    telemetry.addData("Gold Mineral Position", "Left");
-                                    goldLocation = 1;
-                                }
-                                // Is the gold mineral at the rightmost position
-                                else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
-                                    telemetry.addData("Gold Mineral Position", "Right");
-                                    goldLocation = 3;
-                                }
-                                // The gold mineral at the center position
-                                else {
-                                    telemetry.addData("Gold Mineral Position", "Center");
-                                    goldLocation = 2;
-                                }
-                                tfod.shutdown();
-                            }
-                        } //if (updatedRecognitions.size() == 3)
-                        telemetry.update();
-                    } //if (updatedRecognitions != null)
-                } //if (tfod != null)
 
                 // Anna - add your code to do figure out your gold location
 
@@ -223,5 +177,63 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+
+    /**
+     * use TensorFlow and Vuforia to detect the gold mineral
+     * @return goldMineralPosition
+     */
+
+
+    private int detectGoldMineralPosition() {
+        if (tfod != null) {
+            // getUpdatedRecognitions() will return null if no new information is available since
+            // the last time that call was made.
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                telemetry.addData("# Object Detected", updatedRecognitions.size());
+                if (updatedRecognitions.size() == 3) {
+
+                    // Find the position of the minerals
+
+                    for (Recognition recognition : updatedRecognitions) {
+                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            goldMineralX = (int) recognition.getLeft();
+                        } else if (silverMineral1X == -1) {
+                            silverMineral1X = (int) recognition.getLeft();
+                        } else {
+                            silverMineral2X = (int) recognition.getLeft();
+                        }
+                    }
+
+                    telemetry.addLine().addData("goldMineral", goldMineralX);
+                    telemetry.addLine().addData("silverMineral", silverMineral1X);
+                    telemetry.addLine().addData("silverMineral2X", silverMineral2X);
+
+                    // Did we find all of the minerals
+                    if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+
+                        // Is the gold mineral at the leftmost position
+                        if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+                            telemetry.addData("Gold Mineral Position", "Left");
+                            goldLocation = 1;
+                        }
+                        // Is the gold mineral at the rightmost position
+                        else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                            telemetry.addData("Gold Mineral Position", "Right");
+                            goldLocation = 3;
+                        }
+                        // The gold mineral at the center position
+                        else {
+                            telemetry.addData("Gold Mineral Position", "Center");
+                            goldLocation = 2;
+                        }
+                        tfod.shutdown();
+                    }
+                } //if (updatedRecognitions.size() == 3)
+                telemetry.update();
+            } //if (updatedRecognitions != null)
+        } //if (tfod != null)
+        return goldLocation;
     }
 }
