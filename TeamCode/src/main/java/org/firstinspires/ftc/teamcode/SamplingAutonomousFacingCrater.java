@@ -14,7 +14,7 @@ import RedStorm.Robot.Robot;
 @Autonomous(name="FacingDepot", group="FacingCrater")
 
 
-public class SamplingAutonomousFacingCrater extends LinearOpMode {
+public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
     public Robot robot = new Robot();
 

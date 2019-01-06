@@ -59,21 +59,6 @@ public class driveAlongWall extends LinearOpMode {
                 telemetry.addData("front distance", "(%.2f)",robot.getFrontDistance());
                 telemetry.update();
 
-                if (distanceFromWall > 250) {
-                    if (remember.equals("right")) {
-                        robot.setDriveMotorPower(0.4, 0.6);
-                    }
-                    else {
-                        if (remember.equals("left")) {
-                            robot.setDriveMotorPower(0.6, .4);
-                        }
-                        else {
-                            robot.setDriveMotorPower(0.5, 0.5);
-                        }
-                    }
-
-                }
-
                 if (distanceFromWall > 5.0) {
                     robot.setDriveMotorPower(0.6, 0.4);
                     telemetry.addLine("turning right - towards wall");
@@ -90,6 +75,21 @@ public class driveAlongWall extends LinearOpMode {
                         telemetry.addLine("Not turning, going straight");
                         remember = "straight";
                     }
+                }
+
+                if (distanceFromWall > 250) {
+                    if (remember.equals("right")) {
+                        robot.setDriveMotorPower(0.4, 0.6);
+                    }
+                    else {
+                        if (remember.equals("left")) {
+                            robot.setDriveMotorPower(0.6, 0.4);
+                        }
+                        else {
+                            robot.setDriveMotorPower(0.5, 0.5);
+                        }
+                    }
+
                 }
 
             }
