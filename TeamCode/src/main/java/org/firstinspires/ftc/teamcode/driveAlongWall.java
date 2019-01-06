@@ -60,13 +60,13 @@ public class driveAlongWall extends LinearOpMode {
                 telemetry.update();
 
                 if (distanceFromWall > 5.0) {
-                    robot.setDriveMotorPower(0.6, 0.4);
+                    robot.setDriveMotorPower(0.5, 0.4);
                     telemetry.addLine("turning right - towards wall");
                     remember = "right";
                 }
                 else {
-                    if (distanceFromWall < 3.0) {
-                        robot.setDriveMotorPower(0.4, 0.6);
+                    if (distanceFromWall < 4.0) {
+                        robot.setDriveMotorPower(0.4, 0.5);
                         telemetry.addLine("turning left - away from wall ");
                         remember = "left";
                     }
@@ -79,11 +79,11 @@ public class driveAlongWall extends LinearOpMode {
 
                 if (distanceFromWall > 250) {
                     if (remember.equals("right")) {
-                        robot.setDriveMotorPower(0.4, 0.6);
+                        robot.setDriveMotorPower(0.4, 0.5);
                     }
                     else {
                         if (remember.equals("left")) {
-                            robot.setDriveMotorPower(0.6, 0.4);
+                            robot.setDriveMotorPower(0.5, 0.4);
                         }
                         else {
                             robot.setDriveMotorPower(0.5, 0.5);

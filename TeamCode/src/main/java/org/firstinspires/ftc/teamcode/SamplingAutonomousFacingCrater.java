@@ -11,7 +11,7 @@ import java.util.List;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingDepot", group="FacingCrater")
+@Autonomous(name="SamplingFacingCrater", group="FacingCrater")
 
 
 public class  SamplingAutonomousFacingCrater extends LinearOpMode {
