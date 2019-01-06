@@ -11,7 +11,7 @@ import java.util.List;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="SamplingFacingCrater", group="FacingCrater")
+@Autonomous(name="SamplingFacingCrater", group="Crater")
 
 
 public class  SamplingAutonomousFacingCrater extends LinearOpMode {
@@ -27,7 +27,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.addData("Status ", "Initialized");
         telemetry.update();
 
-        waitForStart();
+
 
          class CalebTensorFlowObjectDetection extends LinearOpMode {
             private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
@@ -128,16 +128,59 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                 switch(goldLocation) {
                     case 1: {
                         //turn left to face mineral, knock it, turn right to face crater
+                        robot.getHeading();
+                        robot.setDriveMotorPower(-0.5, 0.5);
+                        while (opModeIsActive() &&
+                                robot.getHeading() < 5) {
+                        }
+                        robot.setDriveMotorPower(0,0);
+
+                        robot.setDriveMotorPower(.5, .5);
+                        robot.getDriveEncoderCount();
+                        while (opModeIsActive() &&
+                                robot.getDriveEncoderCount() < 30){
+                        }
+                        robot.setDriveMotorPower(0, 0);
+                        robot.getHeading();
+                        robot.setDriveMotorPower(0.5, -0.5);
+                        while (opModeIsActive() &&
+                                robot.getHeading() > 0) {
+                        }
+                        robot.setDriveMotorPower(0,0);
                         break;
                     }
 
                     case 2: {
                         //go straight ahead, knock mineral
+                        robot.getDriveEncoderCount();
+                        robot.setDriveMotorPower(.5, .5);
+                        while (opModeIsActive() &&
+                                robot.getDriveEncoderCount() < 30){
+                        }
+                        robot.setDriveMotorPower(0, 0);
                         break;
                     }
 
                     case 3: {
                         //turn right to face mineral, knock it, turn left to face crater
+                        robot.getHeading();
+                        robot.setDriveMotorPower(0.5, -0.5);
+                        while (opModeIsActive() &&
+                                robot.getHeading() < 5) {
+                        }
+                        robot.setDriveMotorPower(0,0);
+                        robot.setDriveMotorPower(.5, .5);
+                        robot.getDriveEncoderCount();
+                        while (opModeIsActive() &&
+                                robot.getDriveEncoderCount() < 30){
+                        }
+                        robot.setDriveMotorPower(0, 0);
+                        robot.getHeading();
+                        robot.setDriveMotorPower(-0.5, 0.5);
+                        while (opModeIsActive() &&
+                                robot.getHeading() < 5) {
+                        }
+                        robot.setDriveMotorPower(0,0);
                         break;
                     }
                 }
@@ -145,8 +188,6 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
 
                 }
-
-
 
 
             /**
