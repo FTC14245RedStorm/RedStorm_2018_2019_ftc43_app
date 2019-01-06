@@ -76,7 +76,6 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                 goldLocation = detectGoldMineralPosition();
 
 
-                // Anna - add your code to do figure out your gold location
 
                 switch (goldLocation) {
                     case 1: {
@@ -88,7 +87,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         }
                         robot.setDriveMotorPower(0, 0);
 
-                        robot.setDriveMotorPower(.5, .5);
+                        robot.setDriveMotorPower(-.5, -.5);
                         robot.getDriveEncoderCount();
                         while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < 30) {
@@ -106,7 +105,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     case 2: {
                         //go straight ahead, knock mineral
                         robot.getDriveEncoderCount();
-                        robot.setDriveMotorPower(.5, .5);
+                        robot.setDriveMotorPower(-.5, -.5);
                         while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < 30) {
                         }
@@ -122,7 +121,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                                 robot.getHeading() < 5) {
                         }
                         robot.setDriveMotorPower(0, 0);
-                        robot.setDriveMotorPower(.5, .5);
+                        robot.setDriveMotorPower(-.5, -.5);
                         robot.getDriveEncoderCount();
                         while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < 30) {
