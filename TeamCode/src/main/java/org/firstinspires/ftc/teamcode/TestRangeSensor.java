@@ -33,6 +33,7 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import RedStorm.Robot.Robot;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -49,7 +50,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * @see <a href="http://modernroboticsinc.com/range-sensor">MR Range Sensor</a>
  */
 @TeleOp(name = "Sensor: MR range sensor", group = "Sensor")
-@Disabled
 
 public class TestRangeSensor extends LinearOpMode {
 
@@ -58,7 +58,7 @@ public class TestRangeSensor extends LinearOpMode {
     @Override public void runOpMode() {
 
         // get a reference to our compass
-        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "rangeSensor");
+        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "right_Range");
 
         // wait for the start button to be pressed
         waitForStart();

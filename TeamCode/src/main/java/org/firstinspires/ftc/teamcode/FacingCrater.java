@@ -123,8 +123,7 @@ public class FacingCrater extends LinearOpMode {
 
 
 
-        //we should now be away from handle facing the lander
-
+        // We should now be away from handle facing the lander
     }
 }
 
