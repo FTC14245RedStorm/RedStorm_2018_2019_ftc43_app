@@ -92,6 +92,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                                     silverMineral2X = (int) recognition.getLeft();
                                 }
                             }
+
                             telemetry.addLine().addData("goldMineral", goldMineralX);
                             telemetry.addLine().addData("silverMineral", silverMineral1X);
                             telemetry.addLine().addData("silverMineral2X", silverMineral2X);
