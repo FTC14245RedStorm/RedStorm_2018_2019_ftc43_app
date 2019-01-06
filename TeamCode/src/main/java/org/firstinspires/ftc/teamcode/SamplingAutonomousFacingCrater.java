@@ -81,10 +81,9 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     case 1: {
                         //turn left to face mineral, knock it, turn right to face crater
                         robot.setDriveMotorPower(-0.5, 0.5);
-                        while (opModeIsActive() &&
-                                robot.getHeading() < 5) {
+                        while (opModeIsActive() && robot.getHeading() < 5) {
                         }
-                        double encoderDistanceToTravel = robot.calculateEncoderCounts(4);
+                        double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         robot.setDriveMotorPower(-.5, -.5);
                         while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < encoderDistanceToTravel) {
@@ -110,16 +109,18 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         while (opModeIsActive() &&
                                 robot.getHeading() < 5) {
                         }
-                        double encoderDistanceToTravel = robot.calculateEncoderCounts(4);
-                        robot.setDriveMotorPower(-.5, -.5);
+                        double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
+                        robot.resetEncoders();
+                        robot.runWithEncoders();
                         while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                            telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         }
                         robot.setDriveMotorPower(0, 0);
                         break;
                     }
                 }
-                robot.setDriveMotorPower(0, 0);
+
 
             } //while (opModeIsActive())
         }// if (opModeIsActive())
