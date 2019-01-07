@@ -17,7 +17,7 @@ import RedStorm.Robot.Robot;
 
 public class TeleOpMotorTest extends OpMode {
     // Create an instance of Robot and store it into robot
-    DcMotor rp = hardwareMap.get(DcMotor.class, "rpMotor");
+    DcMotor rp;
     /**
      * init - initializes the robot and puts out a message that tells when
      * the robot is initialized
@@ -25,6 +25,7 @@ public class TeleOpMotorTest extends OpMode {
     @Override
     public void init() {
 
+        rp =  hardwareMap.get(DcMotor.class, "rpMotor");
         telemetry.addData("Initialized", true);
         telemetry.update();
     }
@@ -33,34 +34,15 @@ public class TeleOpMotorTest extends OpMode {
      */
     @Override
     public void loop() {
-        /* For this robot, gamepad1 will control the movement of the robot
-           the left Y stick, will control the left drive side motors, the right Y
-           will control the right drive side motors.
 
-           The values returned by left_stick_y and right_stick_y are negated because:
-           - When the stick is pushed away from the driver, the value returned is negative.
-           - When the stick is pulled towards the driver, the value returned is positive.
-
-           First get the value for the left Y and right Y sticks
-          */
         double rpPower  = -gamepad1.left_stick_y;
-        // double liftDown = gamepad1.dpad_down;
-        // double liftUp = gamepad1.dpad_up;
-        /* Insure that the values from the gamepad for left and right will
-           always be between -1.0 and 1.0.  This is done since motor powers
-           can only be between -1.0 (100% reverse) and 1.0 (100% forward)
-         */
+
         rpPower = Range.clip(rpPower, -1, 1);
 
-        /* Smooth the right and left powers.  Smoothing will give the driver better control.
-           See the smoothPower method for more information.
-         */
         rpPower  = smoothPower(rpPower);
-        /* Set the motor power for the robot.
-         */
+
         rp.setPower(rpPower);
 
-        //  robot.setLiftMotorPower(lift);
     }
     /**
      * smoothPower will attempt to smooth or scale joystick input when driving the

@@ -20,7 +20,7 @@ import RedStorm.Robot.Robot;
 // This line establishes the name of the op mode and
 // extends the header file "OpMode" in order to create a teleop op mode.  just for fun
 
-public class CalebTeleop extends OpMode{
+public class  CalebTeleop extends OpMode{
     // Create an instance of Robot and store it into robot
     public Robot robot = new Robot();
     /**
