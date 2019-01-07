@@ -138,7 +138,7 @@ public class FacingDepot extends LinearOpMode {
 
         double wallDistanceToTravel = robot.calculateEncoderCounts(70);
 
-        robot.setDriveMotorPower(0.75, 0.75);
+        robot.setDriveMotorPower(0.5, 0.5);
         double wallDistanceTraveled = 0;
 
 
