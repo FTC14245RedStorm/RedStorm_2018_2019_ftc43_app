@@ -78,23 +78,23 @@ public class driveAlongWall extends LinearOpMode {
                 }
 
                 if (distanceFromWall > 250) {
-                    if (remember.equals("right")) {
-                        robot.setDriveMotorPower(0.4, 0.5);
-                    }
-                    else {
-                        if (remember.equals("left")) {
-                            robot.setDriveMotorPower(0.5, 0.4);
+                        if (remember.equals("right")) {
+                            robot.setDriveMotorPower(0.4, 0.5);
                         }
                         else {
-                            robot.setDriveMotorPower(0.5, 0.5);
+                            if (remember.equals("left")) {
+                                robot.setDriveMotorPower(0.5, 0.4);
+                            }
+                            else {
+                                robot.setDriveMotorPower(0.5, 0.5);
+                            }
                         }
-                    }
 
                 }
 
             }
 
- 
+
 
 
 

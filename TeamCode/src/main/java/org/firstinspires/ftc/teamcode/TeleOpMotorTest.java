@@ -1,35 +1,31 @@
 package org.firstinspires.ftc.teamcode;
-// These lines import necessary software for this op mode.
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 import RedStorm.Robot.Robot;
 
+@TeleOp(name="TeleOpMotorTest", group="Samples")
 
-// This line establishes this op mode as a teleop op mode and allows for it to be displayed
-// in the drop down list on the Driver Station phone to be chosen to run.
-@TeleOp
+/**
+ * Created by Steve Kocik as a sample for RedStorm to build off of...
+ */
 
-
-
-// This line temporarily takes this op mode off of the drop down list until it is
-// commented out.
-//@Disabled
-// This line establishes the name of the op mode and
-// extends the header file "OpMode" in order to create a teleop op mode.  just for fun
-
-public class  CalebTeleop extends OpMode{
+public class TeleOpMotorTest extends OpMode {
     // Create an instance of Robot and store it into robot
-    public Robot robot = new Robot();
+    DcMotor rp;
     /**
      * init - initializes the robot and puts out a message that tells when
      * the robot is initialized
      */
     @Override
     public void init() {
-        robot.initialize(hardwareMap);
+
+        rp =  hardwareMap.get(DcMotor.class, "rpMotor");
         telemetry.addData("Initialized", true);
         telemetry.update();
     }
@@ -38,79 +34,14 @@ public class  CalebTeleop extends OpMode{
      */
     @Override
     public void loop() {
-        /* For this robot, gamepad1 will control the movement of the robot
-           the left Y stick, will control the left drive side motors, the right Y
-           will control the right drive side motors.
 
-           The values returned by left_stick_y and right_stick_y are negated because:
-           - When the stick is pushed away from the driver, the value returned is negative.
-           - When the stick is pulled towards the driver, the value returned is positive.
+        double rpPower  = -gamepad1.left_stick_y;
 
-           First get the value for the left Y and right Y sticks
-          */
-        double left  = -gamepad1.left_stick_y;
-        double right = -gamepad1.right_stick_y;
-        double lift  =  gamepad2.right_stick_y;
-        boolean gripperOpen = gamepad2.a;
-        boolean gripperClose = gamepad2.b;
-        boolean armUp = gamepad2.x;
-        boolean armDown = gamepad2.y;
- // setting variables for all of the functions I want to be able to do
+        rpPower = Range.clip(rpPower, -1, 1);
 
+        rpPower  = smoothPower(rpPower);
 
-        if (gripperOpen == true) {
-            robot.setTeamMarkerGrip(.5);
-        }
-        if (gripperClose == true) {
-            robot.setTeamMarkerGrip(0);
-        }
-// one button opens the gripper, and one closes it
-
-        if (armUp == true) {
-            robot.setTeamMarkerArm(-.5);
-        }
-        if (armDown == true) {
-            robot.setTeamMarkerArm(.1);
-        }
-//you can raise and lower the arm
-
-        boolean liftDown = gamepad2.dpad_down;
-        boolean liftUp = gamepad2.dpad_up;
-
-        if (liftDown == true) {
-            robot.setLiftServo(.4);
-        }
-
-        if (liftUp == true) {
-            robot.setLiftServo(.6);
-        }
-//allows us to push the hook in and out of the gear
-
-
-
-
-
-        /* Insure that the values from the gamepad for left and right will
-           always be between -1.0 and 1.0.  This is done since motor powers
-           can only be between -1.0 (100% reverse) and 1.0 (100% forward)
-         */
-        left = Range.clip(left, -1, 1);
-        right = Range.clip(right, -1, 1);
-        lift = Range.clip(lift,  -1, 1);
-
-        /* Smooth the right and left powers.  Smoothing will give the driver better control.
-           See the smoothPower method for more information.
-         */
-        left  = smoothPower(left);
-        right = smoothPower(right);
-      //  lift = smoothPower(lift * .75);
-        // making power less for remote
-        /* Set the motor power for the robot.
-         */
-        robot.setDriveMotorPower(left, right);
-
-        robot.setLiftMotorPower(lift);
-  // setting lift power for the robot
+        rp.setPower(rpPower);
 
     }
     /**
@@ -199,5 +130,4 @@ public class  CalebTeleop extends OpMode{
         // return scaled value.
         return dScale;
     }
-
 }
