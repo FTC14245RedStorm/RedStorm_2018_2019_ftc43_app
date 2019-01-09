@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingDepot", group="FacingCrater")
+@Autonomous(name="FacingDepot", group="FacingDepot")
 
 public class FacingDepot extends LinearOpMode {
 

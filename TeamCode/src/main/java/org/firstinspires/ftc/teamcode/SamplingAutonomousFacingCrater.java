@@ -80,6 +80,9 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                 switch (goldLocation) {
                     case 1: {
                         //turn left to face mineral, knock it, turn right to face crater
+                        robot.setTeamMarkerArm(-.5);
+                        double crntHeading = robot.getHeading();
+                        robot.initializeIMU();
                         robot.setDriveMotorPower(-0.5, 0.5);
                         while (opModeIsActive() &&
                                 robot.getHeading() < 10) {
@@ -97,6 +100,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     case 2: {
                         //go straight ahead, knock mineral
+                        robot.setTeamMarkerArm(-.5);
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         robot.resetEncoders();
                         robot.runWithEncoders();
@@ -110,6 +114,9 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     case 3: {
                         //turn right to face mineral, knock it, turn left to face crater
+                        //double crntHeading = robot.getHeading();
+                        //robot.initializeIMU();
+                        robot.setTeamMarkerArm(-.5);
                         robot.setDriveMotorPower(0.5, -0.5);
                         while (opModeIsActive() &&
                                 robot.getHeading() < 10) {
