@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.vuforia.CameraDevice;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -46,7 +47,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.addData("Status ", "Initialized");
         telemetry.update();
 
-        waitForStart();
+       // waitForStart();
 
 
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
@@ -82,21 +83,25 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     case 1: {
                         //turn left to face mineral, knock it, turn right to face crater
                        // robot.setTeamMarkerArm(.1);
-                        robot.setTeamMarkerArm(-.5);
-                        double crntHeading = robot.getHeading();
+                        telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        //robot.setTeamMarkerArm(-.5);
                         robot.initializeIMU();
-                        robot.setDriveMotorPower(-0.5, 0.5);
-                        while (opModeIsActive() &&
-                                robot.getHeading() < 10) {
-                        }
+                        double crntHeading = robot.getHeading();
+                        telemetry.addLine().addData("currentHeading",String.valueOf(crntHeading));
+                        //robot.setDriveMotorPower(0.5, -0.5);
+                        telemetry.update();
+                       /*while (opModeIsActive() &&
+                                robot.getHeading() < 10.0) {
+                            telemetry.addLine().addData("currentHeading",robot.getHeading());
+                        }*/
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         robot.resetEncoders();
                         robot.runWithEncoders();
-                        while (opModeIsActive() &&
+                        /*while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < encoderDistanceToTravel) {
                             telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         }
-                        robot.setDriveMotorPower(0, 0);
+                        robot.setDriveMotorPower(0, 0);*/
 
                         break;
                     }
@@ -104,27 +109,37 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     case 2: {
                         //go straight ahead, knock mineral
                        // robot.setTeamMarkerArm(.1);
-                        robot.setTeamMarkerArm(-.5);
+                        telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        //robot.setTeamMarkerArm(-.5);
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
+                        telemetry.addLine().addData("encoderDistance",String.valueOf(encoderDistanceToTravel));
                         robot.resetEncoders();
                         robot.runWithEncoders();
-                        robot.setDriveMotorPower(-.5, -.5);
-                        while (opModeIsActive() &&
+                        //robot.setDriveMotorPower(-.5, -.5);
+                        telemetry.update();
+                        /*while (opModeIsActive() &&
                                 robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                            telemetry.addLine().addData("currentencoder",robot.getDriveEncoderCount());
+                            telemetry.addLine().addData("encoderDistance",String.valueOf(encoderDistanceToTravel));
+                            telemetry.update();
                         }
-                        robot.setDriveMotorPower(0, 0);
+                        robot.setDriveMotorPower(0, 0);*/
                         break;
                     }
 
                     case 3: {
                         //turn right to face mineral, knock it, turn left to face crater
-                        //double crntHeading = robot.getHeading();
-                        //robot.initializeIMU();
+                        robot.initializeIMU();
+                        double crntHeading = robot.getHeading();
                        // robot.setTeamMarkerArm(.1);
-                        robot.setTeamMarkerArm(-.5);
-                        robot.setDriveMotorPower(0.5, -0.5);
-                        while (opModeIsActive() &&
-                                robot.getHeading() < 10) {
+                        telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        //robot.setTeamMarkerArm(-.5);
+                        telemetry.addLine().addData("currentHeading",String.valueOf(crntHeading));
+                        robot.setDriveMotorPower(-0.5, 0.5);
+                        telemetry.update();
+                        /*while (opModeIsActive() &&
+                                robot.getHeading() < 10.0) {
+                            telemetry.addLine().addData("currentHeading",robot.getHeading());
                         }
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         robot.resetEncoders();
@@ -133,7 +148,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                                 robot.getDriveEncoderCount() < encoderDistanceToTravel) {
                             telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         }
-                        robot.setDriveMotorPower(0, 0);
+                        robot.setDriveMotorPower(0, 0);*/
                         break;
                     }
                 }
@@ -188,6 +203,8 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
     private int detectGoldMineralPosition() {
         if (tfod != null) {
+            //so the red tape isn't identified as a mineral turn on the flash
+            CameraDevice.getInstance().setFlashTorchMode(true);
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
@@ -229,7 +246,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                             telemetry.addData("Gold Mineral Position", "Center");
                             goldLocation = 2;
                         }
-                        tfod.shutdown();
+                        //tfod.shutdown();
                     }
                 } //if (updatedRecognitions.size() == 3)
                 telemetry.update();

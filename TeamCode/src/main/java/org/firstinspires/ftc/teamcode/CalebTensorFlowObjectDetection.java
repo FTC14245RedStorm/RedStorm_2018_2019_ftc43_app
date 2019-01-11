@@ -29,6 +29,8 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.vuforia.CameraDevice;
+
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -86,6 +88,7 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
             }
 
             while (opModeIsActive()) {
+                CameraDevice.getInstance().setFlashTorchMode(true);
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -129,7 +132,7 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                             telemetry.addData("Gold Mineral Position", "Center");
                             goldLocation = 2;
                           }
-                          tfod.shutdown();
+                          //tfod.shutdown();
                         }
                       }
                       telemetry.update();
