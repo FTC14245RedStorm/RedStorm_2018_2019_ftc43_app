@@ -74,12 +74,14 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                 // make all of this a method called detectGoldMineralPosition
                 goldLocation = detectGoldMineralPosition();
+                robot.setTeamMarkerArm(.1);
 
 
 
                 switch (goldLocation) {
                     case 1: {
                         //turn left to face mineral, knock it, turn right to face crater
+                       // robot.setTeamMarkerArm(.1);
                         robot.setTeamMarkerArm(-.5);
                         double crntHeading = robot.getHeading();
                         robot.initializeIMU();
@@ -95,11 +97,13 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                             telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         }
                         robot.setDriveMotorPower(0, 0);
+
                         break;
                     }
 
                     case 2: {
                         //go straight ahead, knock mineral
+                       // robot.setTeamMarkerArm(.1);
                         robot.setTeamMarkerArm(-.5);
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         robot.resetEncoders();
@@ -116,6 +120,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         //turn right to face mineral, knock it, turn left to face crater
                         //double crntHeading = robot.getHeading();
                         //robot.initializeIMU();
+                       // robot.setTeamMarkerArm(.1);
                         robot.setTeamMarkerArm(-.5);
                         robot.setDriveMotorPower(0.5, -0.5);
                         while (opModeIsActive() &&
@@ -132,6 +137,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         break;
                     }
                 }
+
 
 
             } //while (opModeIsActive())
