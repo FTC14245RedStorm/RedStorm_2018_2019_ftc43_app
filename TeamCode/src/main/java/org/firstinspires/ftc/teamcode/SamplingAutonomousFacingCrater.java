@@ -39,7 +39,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         robot.initialize(hardwareMap);             // Initialize the robot
         robot.resetEncoders();                     // Reset the encoder counts
         robot.runWithEncoders();                   // Tell the motors to run with encoders
@@ -74,8 +74,9 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
             while (opModeIsActive()) {
 
                 // make all of this a method called detectGoldMineralPosition
-                goldLocation = detectGoldMineralPosition();
                 robot.setTeamMarkerArm(.1);
+                Thread.sleep(250);
+                goldLocation = detectGoldMineralPosition();
 
 
 
