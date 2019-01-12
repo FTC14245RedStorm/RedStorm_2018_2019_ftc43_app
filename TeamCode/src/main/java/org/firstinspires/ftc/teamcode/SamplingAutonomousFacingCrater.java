@@ -66,13 +66,14 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
+            telemetry.update();
             /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
                 tfod.activate();
             }
 
             while (opModeIsActive()) {
-
+                telemetry.update();
                 // make all of this a method called detectGoldMineralPosition
                 robot.setTeamMarkerArm(.1);
                 Thread.sleep(250);
@@ -85,6 +86,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         //turn left to face mineral, knock it, turn right to face crater
                        // robot.setTeamMarkerArm(.1);
                         telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        telemetry.update();
                         robot.setTeamMarkerArm(-.5);
                         robot.initializeIMU();
                         double crntHeading = robot.getHeading();
@@ -111,6 +113,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         //go straight ahead, knock mineral
                        // robot.setTeamMarkerArm(.1);
                         telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        telemetry.update();
                         robot.setTeamMarkerArm(-.5);
                         double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
                         telemetry.addLine().addData("encoderDistance",String.valueOf(encoderDistanceToTravel));
@@ -134,6 +137,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                         double crntHeading = robot.getHeading();
                         //robot.setTeamMarkerArm(.1);
                         telemetry.addLine().addData("goldDetected",String.valueOf(goldLocation));
+                        telemetry.update();
                         robot.setTeamMarkerArm(-.5);
                         telemetry.addLine().addData("currentHeading",String.valueOf(crntHeading));
                         robot.setDriveMotorPower(-0.5, 0.5);
