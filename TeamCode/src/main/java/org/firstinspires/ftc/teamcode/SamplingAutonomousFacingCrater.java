@@ -75,123 +75,128 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                 tfod.activate();
             }
 
-            while (opModeIsActive()) {
-                telemetry.update();
+            telemetry.update();
 
-                Thread.sleep(2000);
-                goldLocation = detectGoldMineralPosition();
+            Thread.sleep(2500);
+            goldLocation = detectGoldMineralPosition();
 
-                Thread.sleep(1000);
+            Thread.sleep(1000);
 
-                // Tell update to clear the display and then update to clear the display
-                telemetry.setAutoClear(true);
-                telemetry.update();
+            // Tell update to clear the display and then update to clear the display
+            telemetry.setAutoClear(true);
+            telemetry.update();
 
-                telemetry.addLine().addData("goldLocation",String.valueOf(goldLocation));
+            telemetry.addLine().addData("goldLocation", String.valueOf(goldLocation));
 
-                // Raise the arm back up
-                robot.setTeamMarkerArm(-.5);
+            // Raise the arm back up
+            robot.setTeamMarkerArm(-.5);
 
-                // Initialize the IMU
-                robot.initializeIMU();
+            // Initialize the IMU
+            robot.initializeIMU();
 
-                telemetry.addLine().addData("IMU initialize"," complete");
-/**
-                switch (goldLocation) {
-                    case 1: {
+            telemetry.addLine().addData("IMU initialize", " complete");
 
-                        telemetry.addLine().addData("Case 1",String.valueOf(goldLocation));
-                        //turn left to face mineral, knock it, turn right to face crater
-                       // robot.setTeamMarkerArm(.1);
+            switch (goldLocation) {
+                case 1: {
+
+                    telemetry.addLine().addData("Case 1", String.valueOf(goldLocation));
+                    //turn left to face mineral, knock it, turn right to face crater
+                    // robot.setTeamMarkerArm(.1);
 
 
-                        double crntHeading = robot.getHeading();
-                        telemetry.addLine().addData("currentHeading",String.valueOf(crntHeading));
-                        telemetry.addLine().addData("Start","turning");
+                    double crntHeading = robot.getHeading();
+                    telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
+                    telemetry.addLine().addData("Start", "turning");
+                    telemetry.update();
+                    Thread.sleep(250);
+
+                    robot.setDriveMotorPower(-0.5, 0.5);
+                    telemetry.update();
+                    while (opModeIsActive() &&
+                            robot.getHeading() < 15.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
-                        Thread.sleep(250);
 
-                        robot.setDriveMotorPower(0.5, -0.5);
-                        telemetry.update();
-                        while (opModeIsActive() &&
-                                robot.getHeading() < 10.0) {
-                            telemetry.addLine().addData("currentHeading",robot.getHeading());
-                            telemetry.update();
-
-                        }
-                        double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
-                        robot.resetEncoders();
-                        robot.runWithEncoders();
-                        while (opModeIsActive() &&
-                                robot.getDriveEncoderCount() < encoderDistanceToTravel) {
-                            telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
-                            telemetry.update();
-                        }
-                        robot.setDriveMotorPower(0, 0);
-
-                        break;
                     }
-
-                    case 2: {
-                        //go straight ahead, knock mineral
-                       // robot.setTeamMarkerArm(.1);
-                        telemetry.addLine().addData("Case 2",String.valueOf(goldLocation));
-
-                        double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
-                        telemetry.addLine().addData("encoderDistance",String.valueOf(encoderDistanceToTravel));
-
-                        robot.resetEncoders();
-                        robot.runWithEncoders();
-                        robot.setDriveMotorPower(-.5, -.5);
+                    robot.setDriveMotorPower(0,0);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.initializeIMU();
+                    robot.setDriveMotorPower(-.5,-.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         telemetry.update();
-
-                        while (opModeIsActive() &&
-                                robot.getDriveEncoderCount() < encoderDistanceToTravel) {
-                            telemetry.addLine().addData("currentencoder",robot.getDriveEncoderCount());
-                            telemetry.addLine().addData("encoderDistance",String.valueOf(encoderDistanceToTravel));
-                            telemetry.update();
-                        }
-                        robot.setDriveMotorPower(0, 0);
-                        break;
                     }
+                    robot.setDriveMotorPower(0, 0);
 
-                    case 3: {
-                        telemetry.addLine().addData("Case 3",String.valueOf(goldLocation));
-                        //turn left to face mineral, knock it, turn right to face crater
-                        // robot.setTeamMarkerArm(.1);
-
-
-                        double crntHeading = robot.getHeading();
-                        telemetry.addLine().addData("currentHeading",String.valueOf(crntHeading));
-                        telemetry.addLine().addData("Start","turning");
-                        telemetry.update();
-                        Thread.sleep(250);
-
-                        robot.setDriveMotorPower(-0.5, 0.5);
-                        telemetry.update();
-                        while (opModeIsActive() &&
-                                robot.getHeading() < 10.0) {
-                            telemetry.addLine().addData("currentHeading",robot.getHeading());
-                            telemetry.update();
-
-                        }
-                        double encoderDistanceToTravel = robot.calculateEncoderCounts(24);
-                        robot.resetEncoders();
-                        robot.runWithEncoders();
-                        while (opModeIsActive() &&
-                                robot.getDriveEncoderCount() < encoderDistanceToTravel) {
-                            telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
-                            telemetry.update();
-                        }
-                        robot.setDriveMotorPower(0, 0);
-
-                        break;
-                    }
+                    break;
                 }
-**/
+
+                case 2: {
+                    //go straight ahead, knock mineral
+                    // robot.setTeamMarkerArm(.1);
+                    telemetry.addLine().addData("Case 2", String.valueOf(goldLocation));
+
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(-.5, -.5);
+                    telemetry.update();
+
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                        telemetry.addLine().addData("currentencoder", robot.getDriveEncoderCount());
+                        telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
+                    break;
+                }
+
+                case 3: {
+                    telemetry.addLine().addData("Case 3", String.valueOf(goldLocation));
+                    //turn left to face mineral, knock it, turn right to face crater
+                    // robot.setTeamMarkerArm(.1);
 
 
-            } //while (opModeIsActive())
+                    double crntHeading = robot.getHeading();
+                    telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
+                    telemetry.addLine().addData("Start", "turning");
+                    telemetry.update();
+                    Thread.sleep(250);
+
+                    robot.setDriveMotorPower(0.5, -0.5);
+                    telemetry.update();
+                    while (opModeIsActive() &&
+                            robot.getHeading() < 15.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                        telemetry.update();
+
+                    }
+                    robot.setDriveMotorPower(0,0);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.initializeIMU();
+                    robot.setDriveMotorPower(-.5,-.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
+
+                    break;
+                }
+            }
+
+
+
+
         }// if (opModeIsActive())
 
         // shut down so it doesn't change the values anymore
