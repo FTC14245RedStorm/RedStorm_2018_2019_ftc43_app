@@ -223,6 +223,7 @@ public class Robot {
 
        teamMarkerArm.setPosition(-.5);
        teamMarkerGrip.setPosition(0);
+       liftServo.setPosition(0.4);
 
 
     }
