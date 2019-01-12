@@ -96,11 +96,12 @@ public class CalebTensorFlowObjectDetection extends LinearOpMode {
                     if (updatedRecognitions != null) {
                       telemetry.addData("# Object Detected", updatedRecognitions.size());
                       if (updatedRecognitions.size() == 3) {
+
                         int goldMineralX = -1;
                         int silverMineral1X = -1;
-
-                        // Find the position of the minerals
                         int silverMineral2X = -1;
+
+                          // Find the position of the minerals
                         for (Recognition recognition : updatedRecognitions) {
                           if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                             goldMineralX = (int) recognition.getLeft();

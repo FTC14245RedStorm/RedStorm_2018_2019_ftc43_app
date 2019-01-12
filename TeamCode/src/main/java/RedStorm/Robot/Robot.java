@@ -81,6 +81,8 @@ public class Robot {
         liftMotor.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         // Set all motors to zero power
         rightDrive.setPower(0);
         leftDrive.setPower(0);
