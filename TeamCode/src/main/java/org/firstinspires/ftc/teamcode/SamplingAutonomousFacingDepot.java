@@ -102,6 +102,20 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.addLine().addData("Case 1", String.valueOf(goldLocation));
                     //turn left to face mineral, knock it, turn right to face crater
                     // robot.setTeamMarkerArm(.1);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(5);
+                    telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(-.5, -.5);
+                    telemetry.update();
+
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                        telemetry.addLine().addData("currentencoder", robot.getDriveEncoderCount());
+                        telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+                        telemetry.update();
+                    }
 
 
                     double crntHeading = robot.getHeading();
@@ -113,33 +127,64 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(-0.5, 0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 15.0) {
+                            robot.getHeading() < 30.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    Thread.sleep(250);
+                    double encoderDistanceToTravelB = robot.calculateEncoderCounts(32);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.setDriveMotorPower(-.5,-.5);
                     while (opModeIsActive() &&
-                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelB) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    double encoderDistanceToTravelC = robot.calculateEncoderCounts(10);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(.5,.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelC) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         telemetry.update();
                     }
                     robot.setDriveMotorPower(0, 0);
+                    //robot.setDriveMotorPower(0, 0);
+                    Thread.sleep(250);
+                    telemetry.update();
+                    robot.initializeIMU();
+
                     robot.setDriveMotorPower(0.5, -0.5);
+                    //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() > 0) {
+                            robot.getHeading() < 30.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
+                    Thread.sleep(250);
+                    telemetry.addData("Status ", "Straight");
+                    telemetry.update();
                     robot.setDriveMotorPower(0,0);
-                    robot.setDriveMotorPower(.4,.4);
+                    Thread.sleep(250);
+
+                    double encoderDistanceToTravelD = robot.calculateEncoderCounts(30);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(-.5,-.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelD) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
                     robot.setTeamMarkerArm(.1);
                     robot.setTeamMarkerGrip(.5);
-                    robot.setTeamMarkerArm(-.5);
+                    //robot.setTeamMarkerArm(-.5);
+
 
                     break;
                 }
@@ -149,7 +194,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     // robot.setTeamMarkerArm(.1);
                     telemetry.addLine().addData("Case 2", String.valueOf(goldLocation));
 
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(60);
                     telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
 
                     robot.resetEncoders();
@@ -164,24 +209,31 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.update();
                     }
                     robot.setDriveMotorPower(0, 0);
-                    robot.setDriveMotorPower(0.5, -0.5);
-                    while (opModeIsActive() &&
-                            robot.getHeading() > 0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
-                        telemetry.update();
-                    }
-                    robot.setDriveMotorPower(0,0);
-                    robot.setDriveMotorPower(.4,.4);
+                    //robot.setDriveMotorPower(.4,.4);
                     robot.setTeamMarkerArm(.1);
-                    robot.setTeamMarkerGrip(.5);
-                    robot.setTeamMarkerArm(-.5);
+                    //robot.setTeamMarkerGrip(.5);
+                   // robot.setTeamMarkerArm(-.5);
                     break;
                 }
 
                 case 3: {
-                    telemetry.addLine().addData("Case 3", String.valueOf(goldLocation));
+                    telemetry.addLine().addData("Case 1", String.valueOf(goldLocation));
                     //turn left to face mineral, knock it, turn right to face crater
                     // robot.setTeamMarkerArm(.1);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(5);
+                    telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(-.5, -.5);
+                    telemetry.update();
+
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                        telemetry.addLine().addData("currentencoder", robot.getDriveEncoderCount());
+                        telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
+                        telemetry.update();
+                    }
 
 
                     double crntHeading = robot.getHeading();
@@ -193,33 +245,57 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0.5, -0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 15.0) {
+                            robot.getHeading() < 30.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    Thread.sleep(250);
+                    double encoderDistanceToTravelB = robot.calculateEncoderCounts(32);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.setDriveMotorPower(-.5,-.5);
                     while (opModeIsActive() &&
-                            robot.getDriveEncoderCount() < encoderDistanceToTravel) {
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelB) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         telemetry.update();
                     }
                     robot.setDriveMotorPower(0, 0);
-                    robot.setDriveMotorPower(0.5, -0.5);
+                    Thread.sleep(250);
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(-0.5, 0.5);
+                    Thread.sleep(250);
+                    robot.initializeIMU();
+                    Thread.sleep(250);
+                    robot.getHeading();
+
+                    robot.setDriveMotorPower(0.3, -0.3);
+                    //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() > 0) {
+                            robot.getHeading() < 0.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
+
                     }
                     robot.setDriveMotorPower(0,0);
-                    robot.setDriveMotorPower(.4,.4);
+                    Thread.sleep(250);
+
+                    double encoderDistanceToTravelC = robot.calculateEncoderCounts(30);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(-.5,-.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelC) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
                     robot.setTeamMarkerArm(.1);
                     robot.setTeamMarkerGrip(.5);
-                    robot.setTeamMarkerArm(-.5);
+                    //robot.setTeamMarkerArm(-.5);
+
 
                     break;
                 }
