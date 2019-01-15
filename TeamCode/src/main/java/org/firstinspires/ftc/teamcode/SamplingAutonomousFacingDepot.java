@@ -84,8 +84,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
         robot.setLiftMotorPower(0);
 
-        Thread.sleep(500);
+        //Thread.sleep(500);
         robot.setTeamMarkerArm(.1);
+        Thread.sleep(500);
 
         if (opModeIsActive()) {
             telemetry.update();
@@ -96,10 +97,10 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             telemetry.update();
 
-            Thread.sleep(2500);
+            //Thread.sleep(1500);
             goldLocation = detectGoldMineralPosition();
 
-            Thread.sleep(1000);
+            Thread.sleep(1500);
 
             // Tell update to clear the display and then update to clear the display
             telemetry.setAutoClear(true);
@@ -114,7 +115,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
             robot.setDriveMotorPower(.2, -.2);
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 20) {
+                    robot.getHeading() < 20.0) {
 
             }
             telemetry.addData("Status ", "Turned");
@@ -151,7 +152,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
             robot.setDriveMotorPower(-.2, .2);
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 23) {
+                    robot.getHeading() < 23.0) {
 
             }
             telemetry.addData("Status ", "Turned");
@@ -194,10 +195,10 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
                     telemetry.addLine().addData("Start", "turning");
                     telemetry.update();
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
 
                     robot.setDriveMotorPower(-0.5, 0.5);
-                    telemetry.update();
+                    //telemetry.update();
                     while (opModeIsActive() &&
                             robot.getHeading() < 25.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
@@ -205,7 +206,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     double encoderDistanceToTravelB = robot.calculateEncoderCounts(40);
                     robot.resetEncoders();
                     robot.runWithEncoders();
@@ -226,7 +227,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     }
                     robot.setDriveMotorPower(0, 0);
                     //robot.setDriveMotorPower(0, 0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.update();
                     robot.initializeIMU();
 
@@ -237,11 +238,11 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
 
                     double encoderDistanceToTravelD = robot.calculateEncoderCounts(35);
                     robot.resetEncoders();
@@ -256,9 +257,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
                     robot.setTeamMarkerGrip(.5);
-                    Thread.sleep(1500);
-                    robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
+                    robot.setTeamMarkerArm(.1);
+                    Thread.sleep(250);
 
                     //now we go to back up into crater
 
@@ -266,7 +267,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     double encoderDistanceToTravelE = robot.calculateEncoderCounts(30);
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.setDriveMotorPower(.5,.5);
+                    robot.setDriveMotorPower(.8,.8);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravelE) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
@@ -274,20 +275,20 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     }
                     robot.setDriveMotorPower(0,0);
 
-                    //now turn so we dont bump into the lander
+                    //now turn so we don't bump into the lander
 
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.update();
                     robot.initializeIMU();
 
-                    robot.setDriveMotorPower(0.5, -0.5);
+                    robot.setDriveMotorPower(0.7, -0.7);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
                             robot.getHeading() < 5.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
@@ -300,7 +301,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     double encoderDistanceToTravelF = robot.calculateEncoderCounts(50);
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.setDriveMotorPower(.5,.5);
+                    robot.setDriveMotorPower(.8,.8);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravelF) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
