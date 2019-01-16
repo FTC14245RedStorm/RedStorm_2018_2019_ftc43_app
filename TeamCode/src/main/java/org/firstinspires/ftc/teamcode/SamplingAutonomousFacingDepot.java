@@ -84,9 +84,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
         robot.setLiftMotorPower(0);
 
-        //Thread.sleep(500);
+        Thread.sleep(1000);
         robot.setTeamMarkerArm(.1);
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
         if (opModeIsActive()) {
             telemetry.update();
@@ -97,10 +97,10 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             telemetry.update();
 
-            //Thread.sleep(1500);
+            Thread.sleep(1500);
             goldLocation = detectGoldMineralPosition();
 
-            Thread.sleep(1500);
+            Thread.sleep(1000);
 
             // Tell update to clear the display and then update to clear the display
             telemetry.setAutoClear(true);
