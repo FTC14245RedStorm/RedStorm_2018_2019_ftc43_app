@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="Drive Along Wall", group="distance")
+//@Autonomous(name="Drive Along Wall", group="distance")
 
 public class driveAlongWall extends LinearOpMode {
 

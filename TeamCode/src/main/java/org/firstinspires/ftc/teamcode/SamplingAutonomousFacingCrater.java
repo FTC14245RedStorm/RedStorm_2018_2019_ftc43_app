@@ -47,7 +47,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.addData("Status ", "Initialized");
         telemetry.update();
 
-       // waitForStart();
+        // waitForStart();
 
 
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
@@ -65,8 +65,28 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        // make all of this a method called detectGoldMineralPosition
+        double startDeployTime = System.currentTimeMillis();
+
+        robot.setLiftServo(.6);
+
+        Thread.sleep(250);
+
+        robot.setLiftMotorPower(-.2);
+
+        while (opModeIsActive() &&
+                //       robot.getLiftEncoderCount() < 135
+                //       &&
+                System.currentTimeMillis() - startDeployTime < 2000) {
+
+        }
+        telemetry.addData("Status ", "Deployed");
+        telemetry.update();
+
+        robot.setLiftMotorPower(0);
+
+        Thread.sleep(1000);
         robot.setTeamMarkerArm(.1);
+        //Thread.sleep(500);
 
         if (opModeIsActive()) {
             telemetry.update();
@@ -77,7 +97,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
             telemetry.update();
 
-            Thread.sleep(2500);
+            Thread.sleep(1500);
             goldLocation = detectGoldMineralPosition();
 
             Thread.sleep(1000);
@@ -90,11 +110,64 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
             // Raise the arm back up
             robot.setTeamMarkerArm(-.5);
+            robot.initializeIMU();
+
+            robot.setDriveMotorPower(.2, -.2);
+
+            while (opModeIsActive() &&
+                    robot.getHeading() < 20.0) {
+
+            }
+            telemetry.addData("Status ", "Turned");
+            telemetry.update();
+
+            robot.resetEncoders();
+            robot.runWithEncoders();
+            robot.setDriveMotorPower(0, 0);
+
+            double distanceToTravel = robot.calculateEncoderCounts(3);
+            telemetry.addData("Status ", "DistTravCalc");
+            telemetry.addData("distance to travel: ", "%5.2f", distanceToTravel);
+            telemetry.addData("enc count: ", "%5.2f", robot.getDriveEncoderCount());
+            telemetry.update();
+
+            robot.setDriveMotorPower(-.2, -.2);
+            while (opModeIsActive() &&
+                    robot.getDriveEncoderCount() < distanceToTravel) ;
+            {
+                telemetry.addData("Status ", "MovingAwayFromLander");
+                telemetry.addData("Enc Count:", "%5.2f", robot.getDriveEncoderCount());
+                telemetry.update();
+
+
+            }
+            telemetry.update();
+
+
+            robot.setDriveMotorPower(0, 0);
+
+            robot.initializeIMU();
+            //robot.setTeamMarkerArm(-.5);
+
+            robot.setDriveMotorPower(-.2, .2);
+
+            while (opModeIsActive() &&
+                    robot.getHeading() < 23.0) {
+
+            }
+            telemetry.addData("Status ", "Turned");
+            telemetry.update();
+
+            robot.resetEncoders();
+            robot.runWithEncoders();
+            robot.setDriveMotorPower(0, 0);
+
 
             // Initialize the IMU
             robot.initializeIMU();
 
             telemetry.addLine().addData("IMU initialize", " complete");
+
 
             switch (goldLocation) {
                 case 1: {
@@ -113,7 +186,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     robot.setDriveMotorPower(-0.5, 0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 15.0) {
+                            robot.getHeading() < 20.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
@@ -172,7 +245,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     robot.setDriveMotorPower(0.5, -0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 15.0) {
+                            robot.getHeading() < 20.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous (name="Encoder Test", group="Samples")
+//@Autonomous (name="Encoder Test", group="Samples")
 
 /**
  * Created by Steve Kocik as a sample for RedStorm to build off of...

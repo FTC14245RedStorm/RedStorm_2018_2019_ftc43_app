@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="FacingDepot", group="FacingDepot")
+//@Autonomous(name="FacingDepot", group="FacingDepot")
 
 public class FacingDepot extends LinearOpMode {
 

@@ -234,7 +234,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0.5, -0.5);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 27.0) {
+                            robot.getHeading() < 42.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
@@ -256,9 +256,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0, 0);
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
-                    robot.setTeamMarkerGrip(.5);
+                    robot.setTeamMarkerGrip(.1);
                     Thread.sleep(500);
-                    robot.setTeamMarkerArm(.1);
+                    robot.setTeamMarkerArm(-.5);
                     Thread.sleep(250);
 
                     //now we go to back up into crater
@@ -284,7 +284,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0.7, -0.7);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 5.0) {
+                            robot.getHeading() < 10.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
@@ -298,7 +298,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.resetEncoders();
                     //robot.runWithEncoders();
                     //robot.initializeIMU();
-                    double encoderDistanceToTravelF = robot.calculateEncoderCounts(50);
+                    double encoderDistanceToTravelF = robot.calculateEncoderCounts(47);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.setDriveMotorPower(.8,.8);
@@ -336,11 +336,63 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.setDriveMotorPower(.4,.4);
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
-                    robot.setTeamMarkerGrip(.5);
-                   // robot.setTeamMarkerArm(-.5);
-                    break;
+                    robot.setTeamMarkerGrip(.1);
+                    robot.setTeamMarkerArm(-.5);
+                    telemetry.update();
+                    robot.initializeIMU();
+
+                    robot.setDriveMotorPower(0.7, -0.7);
+                    //double crntHeadingB = robot.getHeading();
+                    while (opModeIsActive() &&
+                            robot.getHeading() < 27.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                        telemetry.update();
+                    }
+                    //Thread.sleep(250);
+                    telemetry.addData("Status ", "Straight");
+                    telemetry.update();
+                    robot.setDriveMotorPower(0,0);
+                    double encoderDistanceToTravelF = robot.calculateEncoderCounts(37);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(.8,.8);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelF) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
+                    telemetry.update();
+                    robot.initializeIMU();
+
+                    /*
+                    robot.setDriveMotorPower(-0.7, 0.7);
+                    //double crntHeadingB = robot.getHeading();
+                    while (opModeIsActive() &&
+                            robot.getHeading() < 5.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                        telemetry.update();
+                    }
+                    */
+                    //Thread.sleep(250);
+                    telemetry.addData("Status ", "Straight");
+                    telemetry.update();
+                    robot.setDriveMotorPower(0,0);
+                    double encoderDistanceToTravelG = robot.calculateEncoderCounts(36);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(.8,.8);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelG) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
                 }
 
+                break;
                 case 3: {
                     telemetry.addLine().addData("Case 1", String.valueOf(goldLocation));
                     //turn left to face mineral, knock it, turn right to face crater
@@ -366,18 +418,18 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
                     telemetry.addLine().addData("Start", "turning");
                     telemetry.update();
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
 
                     robot.setDriveMotorPower(0.5, -0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 25.0) {
+                            robot.getHeading() < 20.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     double encoderDistanceToTravelB = robot.calculateEncoderCounts(40);
                     robot.resetEncoders();
                     robot.runWithEncoders();
@@ -398,27 +450,27 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     }
                     robot.setDriveMotorPower(0, 0);
                     //robot.setDriveMotorPower(0, 0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.update();
                     robot.initializeIMU();
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 27.0) {
+                            robot.getHeading() < 37.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
                     }
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
-                    Thread.sleep(250);
+                    //Thread.sleep(250);
 
                     double encoderDistanceToTravelD = robot.calculateEncoderCounts(35);
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.setDriveMotorPower(-.5,-.5);
+                    robot.setDriveMotorPower(-.8,-.8);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravelD) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
@@ -428,6 +480,41 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
                     robot.setTeamMarkerGrip(.5);
+                    Thread.sleep(250);
+                    robot.setTeamMarkerArm(-.5);
+
+                    //Thread.sleep(250);
+                    telemetry.addData("Status ", "Straight");
+                    telemetry.update();
+                    double encoderDistanceToTravelR = robot.calculateEncoderCounts(7);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower(.8,.8);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelR) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
+                    telemetry.update();
+                    robot.initializeIMU();
+                    robot.setDriveMotorPower(-0.7, 0.7);
+                    while (opModeIsActive() &&
+                            robot.getHeading() < 40.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    double encoderDistanceToTravelH = robot.calculateEncoderCounts(30);
+                    robot.setDriveMotorPower(-.8,-.8);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelH) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
 
                     break;
                 }
@@ -520,16 +607,38 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.addLine().addData("silverMineral", silverMineral1X);
                     telemetry.addLine().addData("silverMineral2X", silverMineral2X);
 
-                    // Did we find all of the minerals
-                    if (goldMineralX < 250) {
-                        goldLocation = 1;
+
+
+                    if (goldMineralX == -1) {                 //gold mineral not found
+                        if (updatedRecognitions.size() == 2) {  //two silvers found
+                            if (silverMineral1X < 250 && silverMineral2X < 750) {  //silver is left and center
+                                goldLocation = 3; //gold must be on the right
+                            } else if ((silverMineral1X < 900 && silverMineral1X > 250) &&  //silver is center
+                                    silverMineral2X > 900) {  //silver is right
+                                goldLocation = 1;  //gold must be left
+                            } else {
+                                goldLocation = 2;  //gold must be in the center
+                            }
+                        }
+                        else {    // didn't find enough silver minerals
+                            goldLocation = 2;
+                        }
                     }
-                    else if (goldMineralX > 900) {
-                        goldLocation = 3;
+                    else {  //we found the gold mineral
+                        // Did we find all of the minerals
+                        if (goldMineralX < 250) {
+                            goldLocation = 1;
+                        }
+                        else if (goldMineralX > 900) {
+                            goldLocation = 3;
+                        }
+                        else {
+                            goldLocation = 2;
+                        }
+
                     }
-                    else {
-                        goldLocation = 2;
-                    }
+
+
                     /*if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
 
                         // Is the gold mineral at the leftmost position
