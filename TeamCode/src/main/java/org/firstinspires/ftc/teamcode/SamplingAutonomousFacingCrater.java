@@ -186,13 +186,13 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     robot.setDriveMotorPower(-0.5, 0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 20.0) {
+                            robot.getHeading() < 25.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.initializeIMU();
@@ -212,7 +212,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     // robot.setTeamMarkerArm(.1);
                     telemetry.addLine().addData("Case 2", String.valueOf(goldLocation));
 
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
                     telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
 
                     robot.resetEncoders();
@@ -245,13 +245,13 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     robot.setDriveMotorPower(0.5, -0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 20.0) {
+                            robot.getHeading() < 25.0) {
                         telemetry.addLine().addData("currentHeading", robot.getHeading());
                         telemetry.update();
 
                     }
                     robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(28);
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.initializeIMU();
