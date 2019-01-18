@@ -482,6 +482,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerGrip(.5);
                     Thread.sleep(250);
                     robot.setTeamMarkerArm(-.5);
+                    /*
 
                     //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
@@ -515,6 +516,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.update();
                     }
                     robot.setDriveMotorPower(0, 0);
+                    */
 
                     break;
                 }
