@@ -74,13 +74,13 @@ public class SensorDigitalTouch extends LinearOpMode {
         // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
         while (opModeIsActive()) {
 
-            // send the info back to driver station using telemetry function.
-            // if the digital channel returns true it's HIGH and the button is unpressed.
-            if (digitalTouch.getState() == true) {
-                telemetry.addData("Digital Touch", "Is Not Pressed");
-            } else {
-                telemetry.addData("Digital Touch", "Is Pressed");
-            }
+                // send the info back to driver station using telemetry function.
+                // if the digital channel returns true it's HIGH and the button is unpressed.
+                if (digitalTouch.getState() == true) {
+                    telemetry.addData("Digital Touch", "Is Not Pressed");
+                } else {
+                    telemetry.addData("Digital Touch", "Is Pressed");
+                }
 
             telemetry.update();
         }

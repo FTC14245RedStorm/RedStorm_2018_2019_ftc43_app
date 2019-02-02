@@ -65,28 +65,24 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        double startDeployTime = System.currentTimeMillis();
+        robot.setLiftMotorPower(1.0);
 
-        robot.setLiftServo(.6);
 
-        Thread.sleep(250);
-
-        robot.setLiftMotorPower(-.2);
+        double deployStartTime = System.currentTimeMillis();
 
         while (opModeIsActive() &&
-                //       robot.getLiftEncoderCount() < 135
-                //       &&
-                System.currentTimeMillis() - startDeployTime < 2000) {
+                robot.sensorTouch.isPressed() == false &&
+                System.currentTimeMillis() - deployStartTime < 5000) {
 
         }
-        telemetry.addData("Status ", "Deployed");
-        telemetry.update();
 
         robot.setLiftMotorPower(0);
 
+        telemetry.addData("Status ", "Deployed");
+        telemetry.update();
+
         Thread.sleep(1000);
         robot.setTeamMarkerArm(.1);
-        //Thread.sleep(500);
 
         if (opModeIsActive()) {
             telemetry.update();

@@ -3,8 +3,10 @@ package RedStorm.Robot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -30,6 +32,10 @@ public class Robot {
     public ModernRoboticsI2cRangeSensor leftRange  = null;
     public ModernRoboticsI2cRangeSensor rightRange = null;
     public ModernRoboticsI2cRangeSensor frontRange = null;
+
+    public TouchSensor sensorTouch = null;
+
+    public HardwareMap hardwareMap = null;
 
 
     public BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -67,6 +73,8 @@ public class Robot {
         leftRange  = hwMap.get(ModernRoboticsI2cRangeSensor.class, "left_Range");
         rightRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "right_Range");
         frontRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "front_Range");
+
+        sensorTouch = hwMap.touchSensor.get("liftSensor");
 
 
 

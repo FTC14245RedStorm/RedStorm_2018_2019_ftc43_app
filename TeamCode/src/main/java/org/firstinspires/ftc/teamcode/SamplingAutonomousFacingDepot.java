@@ -2,17 +2,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.vuforia.CameraDevice;
+import com.qualcomm.robotcore.hardware.DigitalChannelImpl;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+import org.firstinspires.ftc.robotcore.internal.hardware.DragonboardGPIOPin;
 
 import java.util.List;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="SamplingAutonomousFacingDepot", group="FacingCrater")
+@Autonomous(name="SamplingAu`tonomousFacingDepot", group="FacingCrater")
 
 
 public class  SamplingAutonomousFacingDepot extends LinearOpMode {
@@ -36,6 +39,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
     private int goldMineralX = -1;
     private int silverMineral1X = -1;
     private int silverMineral2X = -1;
+    private double deployStartTime = 0;
 
 
     @Override
@@ -65,24 +69,22 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        double startDeployTime = System.currentTimeMillis();
+        robot.setLiftMotorPower(1.0);
 
-        robot.setLiftServo(.6);
 
-        Thread.sleep(250);
-
-        robot.setLiftMotorPower(-.2);
+        double deployStartTime = System.currentTimeMillis();
 
         while (opModeIsActive() &&
-                //       robot.getLiftEncoderCount() < 135
-                //       &&
-                System.currentTimeMillis() - startDeployTime < 2000) {
+                robot.sensorTouch.isPressed() == false &&
+                System.currentTimeMillis() - deployStartTime < 5000) {
 
         }
+
+        robot.setLiftMotorPower(0);
+
         telemetry.addData("Status ", "Deployed");
         telemetry.update();
 
-        robot.setLiftMotorPower(0);
 
         Thread.sleep(1000);
         robot.setTeamMarkerArm(.1);

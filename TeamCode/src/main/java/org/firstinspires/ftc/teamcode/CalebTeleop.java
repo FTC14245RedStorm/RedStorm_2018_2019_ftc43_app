@@ -50,7 +50,7 @@ public class  CalebTeleop extends OpMode{
           */
         double left  = -gamepad1.left_stick_y;
         double right = -gamepad1.right_stick_y;
-        double lift  =  gamepad2.right_stick_y;
+        double lift  = -gamepad2.right_stick_y;
         boolean gripperOpen = gamepad2.a;
         boolean gripperClose = gamepad2.b;
         boolean armUp = gamepad2.x;
