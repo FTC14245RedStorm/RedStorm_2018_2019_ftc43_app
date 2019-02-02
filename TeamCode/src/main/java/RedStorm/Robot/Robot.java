@@ -322,4 +322,38 @@ public class Robot {
         imu.initialize(parameters);
 
     }
+    /**
+     * This will mimic the Modern Robotics getIntegratedZAxis method
+     *
+     * @return integratedZAxis - the integrated z axis
+     */
+    public double getIntegratedZAxis() {
+
+        // This sets up the how we want the IMU to report data
+        iza_angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        // Obtain the heading (Z-Axis)
+        iza_newHeading = iza_angles.firstAngle;
+
+        // Calculate the change in the heading from the previous heading
+        iza_deltaHeading = iza_newHeading - iza_lastHeading;
+
+        // Bosch IMU wraps at 180, so compensate for this
+        if (iza_deltaHeading <= -180.0) {
+
+            iza_deltaHeading += 360.0;
+        }
+        else if (iza_deltaHeading >= 180.0) {
+
+            iza_deltaHeading -= 360;
+        }
+
+        // Calculate the integratedZAxis
+        integratedZAxis += iza_deltaHeading;
+
+        // Save the current heading for the next call to this method
+        iza_lastHeading = iza_newHeading;
+
+        return integratedZAxis;
+    }
     }
