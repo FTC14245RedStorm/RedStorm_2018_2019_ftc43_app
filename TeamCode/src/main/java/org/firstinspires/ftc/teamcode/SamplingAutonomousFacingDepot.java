@@ -69,6 +69,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+        //
+
         robot.setLiftMotorPower(1.0);
 
 
@@ -86,9 +88,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
         telemetry.update();
 
 
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         robot.setTeamMarkerArm(.1);
-        //Thread.sleep(500);
 
         if (opModeIsActive()) {
             telemetry.update();
