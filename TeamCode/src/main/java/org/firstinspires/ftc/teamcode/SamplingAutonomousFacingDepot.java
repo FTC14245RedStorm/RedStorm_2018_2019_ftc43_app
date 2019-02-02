@@ -576,6 +576,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
     private int detectGoldMineralPosition() {
 
+        List<Recognition> updatedRecognitions = null;
+        int numberOfRecognitions = 0;
+
         // Temporary set up telemtry to not clear the screen
 
         // Tell update to clear the display and then update to clear the display
@@ -590,7 +593,25 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
             CameraDevice.getInstance().setFlashTorchMode(true);
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
-            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+
+            // Loop through until we fine 3 detected objects.  The first time through, updateRecognitions
+            // will be NULL, meaning there is nothing in it and the numberOfRecognitions will be 0.  The
+            // code will loop until we find 3 detected items....then onto the normal processing
+
+            while (opModeIsActive() && (updatedRecognitions == null || numberOfRecognitions < 3)) {
+
+                if (tfod != null) {
+                    // getUpdatedRecognitions() will return null if no new information is available since
+                    // the last time that call was made.
+
+                    updatedRecognitions = tfod.getUpdatedRecognitions();
+                    if (updatedRecognitions == null) {
+                        numberOfRecognitions = 0;
+                    } else {
+                        numberOfRecognitions = updatedRecognitions.size();
+                    }
+                }
+            }
 
             if (updatedRecognitions != null) {
                 telemetry.addLine().addData("# Object Detected", updatedRecognitions.size());
