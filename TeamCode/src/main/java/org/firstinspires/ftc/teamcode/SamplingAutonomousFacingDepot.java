@@ -101,7 +101,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             telemetry.update();
 
-            Thread.sleep(1500);
+            //Thread.sleep(1500);
             goldLocation = detectGoldMineralPosition();
 
             Thread.sleep(1000);
@@ -114,12 +114,12 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             // Raise the arm back up
             robot.setTeamMarkerArm(-.5);
-            robot.initializeIMU();
+            //robot.initializeIMU();
 
             robot.setDriveMotorPower(.2, -.2);
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 20.0) {
+                    robot.getIntegratedZAxis() < 20.0) {
 
             }
             telemetry.addData("Status ", "Turned");
@@ -150,13 +150,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(0, 0);
 
-            robot.initializeIMU();
+            //robot.initializeIMU();
             //robot.setTeamMarkerArm(-.5);
 
             robot.setDriveMotorPower(-.2, .2);
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 23.0) {
+                    robot.getIntegratedZAxis() < 23.0) {
 
             }
             telemetry.addData("Status ", "Turned");
@@ -168,7 +168,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
 
             // Initialize the IMU
-            robot.initializeIMU();
+            //robot.initializeIMU();
 
             telemetry.addLine().addData("IMU initialize", " complete");
 
@@ -192,10 +192,10 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                    // telemetry.update();
                     //}
 
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
 
-                    double crntHeading = robot.getHeading();
+                    double crntHeading = robot.getIntegratedZAxis();
                     telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
                     telemetry.addLine().addData("Start", "turning");
                     telemetry.update();
@@ -204,8 +204,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 25.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 25.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
 
                     }
@@ -233,13 +233,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.setDriveMotorPower(0, 0);
                     //Thread.sleep(250);
                     telemetry.update();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
                     robot.setDriveMotorPower(0.5, -0.5);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 42.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 42.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
                     //Thread.sleep(250);
@@ -259,9 +259,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     }
                     robot.setDriveMotorPower(0, 0);
                     robot.setTeamMarkerArm(.1);
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                     robot.setTeamMarkerGrip(.1);
-                    Thread.sleep(500);
+                    Thread.sleep(750);
                     robot.setTeamMarkerArm(-.5);
                     Thread.sleep(250);
 
@@ -283,13 +283,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     //Thread.sleep(250);
                     telemetry.update();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
                     robot.setDriveMotorPower(0.7, -0.7);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 10.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 10.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
                     //Thread.sleep(250);
@@ -343,13 +343,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerGrip(.1);
                     robot.setTeamMarkerArm(-.5);
                     telemetry.update();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
                     robot.setDriveMotorPower(0.7, -0.7);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 27.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 27.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
                     //Thread.sleep(250);
@@ -368,7 +368,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0,0);
 
                     telemetry.update();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
                     /*
                     robot.setDriveMotorPower(-0.7, 0.7);
@@ -415,7 +415,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     // telemetry.update();
                     //}
 
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
 
                     double crntHeading = robot.getHeading();
@@ -427,8 +427,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setDriveMotorPower(0.5, -0.5);
                     telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 20.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 20.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
 
                     }
@@ -456,13 +456,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.setDriveMotorPower(0, 0);
                     //Thread.sleep(250);
                     telemetry.update();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //double crntHeadingB = robot.getHeading();
                     while (opModeIsActive() &&
-                            robot.getHeading() < 37.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < 37.0) {
+                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
                     //Thread.sleep(250);
