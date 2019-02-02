@@ -64,6 +64,10 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
+        if (tfod != null) {
+            tfod.activate();
+        }
+
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
@@ -94,9 +98,6 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
         if (opModeIsActive()) {
             telemetry.update();
             /** Activate Tensor Flow Object Detection. */
-            if (tfod != null) {
-                tfod.activate();
-            }
 
             telemetry.update();
 
