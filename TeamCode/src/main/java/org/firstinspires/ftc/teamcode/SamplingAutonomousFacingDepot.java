@@ -122,11 +122,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             currentHeading = robot.getHeading();
 
-            finalHeading = currentHeading + 20;
+            finalHeading = currentHeading - 20;
 
             while (opModeIsActive() &&
-                    robot.getIntegratedZAxis() < finalHeading) {
+                    robot.getIntegratedZAxis() > finalHeading) {
                 telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.addData("currentHeading: ",currentHeading);
+                telemetry.addData("finalHeading: ",finalHeading);
                 telemetry.update();
             }
             telemetry.addData("Status ", "Turned");
@@ -164,11 +166,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             currentHeading = robot.getHeading();
 
-            finalHeading = currentHeading - 23;
+            finalHeading = currentHeading + 23;
 
             while (opModeIsActive() &&
                     robot.getIntegratedZAxis() < finalHeading) {
                 telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.addData("currentHeading: ",currentHeading);
+                telemetry.addData("finalHeading: ",finalHeading);
                 telemetry.update();
 
             }
