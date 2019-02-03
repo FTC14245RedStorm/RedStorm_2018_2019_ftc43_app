@@ -40,6 +40,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
     private int silverMineral1X = -1;
     private int silverMineral2X = -1;
     private double deployStartTime = 0;
+    double currentHeading = 0;
+    double finalHeading = 0;
 
 
     @Override
@@ -118,9 +120,14 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(.2, -.2);
 
-            while (opModeIsActive() &&
-                    robot.getIntegratedZAxis() < 20.0) {
+            currentHeading = robot.getHeading();
 
+            finalHeading = currentHeading + 20;
+
+            while (opModeIsActive() &&
+                    robot.getIntegratedZAxis() < finalHeading) {
+                telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.update();
             }
             telemetry.addData("Status ", "Turned");
             telemetry.update();
@@ -155,8 +162,14 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(-.2, .2);
 
+            currentHeading = robot.getHeading();
+
+            finalHeading = currentHeading - 23;
+
             while (opModeIsActive() &&
-                    robot.getIntegratedZAxis() < 23.0) {
+                    robot.getIntegratedZAxis() < finalHeading) {
+                telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.update();
 
             }
             telemetry.addData("Status ", "Turned");
