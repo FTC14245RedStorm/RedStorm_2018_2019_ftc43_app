@@ -120,7 +120,9 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(.2, -.2);
 
-            currentHeading = robot.getHeading();
+            // Setting up for clockwise turn
+
+            currentHeading = robot.getIntegratedZAxis();
 
             finalHeading = currentHeading - 20;
 
@@ -164,12 +166,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(-.2, .2);
 
-            currentHeading = robot.getHeading();
+            currentHeading = robot.getIntegratedZAxis();
 
             finalHeading = currentHeading + 23;
 
             while (opModeIsActive() &&
                     robot.getIntegratedZAxis() < finalHeading) {
+                telemetry.addLine("Centering robot");
                 telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
                 telemetry.addData("currentHeading: ",currentHeading);
                 telemetry.addData("finalHeading: ",finalHeading);
@@ -212,17 +215,22 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.initializeIMU();
 
 
-                    double crntHeading = robot.getIntegratedZAxis();
-                    telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
                     telemetry.addLine().addData("Start", "turning");
                     telemetry.update();
                     //Thread.sleep(250);
 
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 25;
+
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 25.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
                         telemetry.update();
 
                     }
@@ -237,6 +245,8 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         telemetry.update();
                     }
+                    robot.setDriveMotorPower(0,0);
+
                     double encoderDistanceToTravelC = robot.calculateEncoderCounts(10);
                     robot.resetEncoders();
                     robot.runWithEncoders();
@@ -253,9 +263,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.initializeIMU();
 
                     robot.setDriveMotorPower(0.5, -0.5);
-                    //double crntHeadingB = robot.getHeading();
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 48;
+
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 42.0) {
+                            robot.getIntegratedZAxis() > finalHeading) {
                         telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
@@ -303,9 +317,13 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.initializeIMU();
 
                     robot.setDriveMotorPower(0.7, -0.7);
-                    //double crntHeadingB = robot.getHeading();
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 10;
+
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 10.0) {
+                            robot.getIntegratedZAxis() > finalHeading) {
                         telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
                         telemetry.update();
                     }
@@ -362,12 +380,20 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.update();
                     //robot.initializeIMU();
 
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 27;
+
                     robot.setDriveMotorPower(0.7, -0.7);
-                    //double crntHeadingB = robot.getHeading();
+                    //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 27.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
                         telemetry.update();
+
                     }
                     //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
@@ -415,7 +441,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                 break;
                 case 3: {
-                    telemetry.addLine().addData("Case 1", String.valueOf(goldLocation));
+                    telemetry.addLine().addData("Case 3", String.valueOf(goldLocation));
                     //turn left to face mineral, knock it, turn right to face crater
                     // robot.setTeamMarkerArm(.1);
                     //robot.resetEncoders();
@@ -435,17 +461,24 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     //robot.initializeIMU();
 
 
-                    double crntHeading = robot.getHeading();
+                    double crntHeading = robot.getIntegratedZAxis();
                     telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
                     telemetry.addLine().addData("Start", "turning");
                     telemetry.update();
                     //Thread.sleep(250);
 
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 20;
+
                     robot.setDriveMotorPower(0.5, -0.5);
-                    telemetry.update();
+
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 20.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
+                            robot.getIntegratedZAxis() > finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
                         telemetry.update();
 
                     }
@@ -475,14 +508,21 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.update();
                     //robot.initializeIMU();
 
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 37;
+
                     robot.setDriveMotorPower(-0.5, 0.5);
-                    //double crntHeadingB = robot.getHeading();
+                    //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < 37.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getIntegratedZAxis());
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
                         telemetry.update();
+
                     }
-                    //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
