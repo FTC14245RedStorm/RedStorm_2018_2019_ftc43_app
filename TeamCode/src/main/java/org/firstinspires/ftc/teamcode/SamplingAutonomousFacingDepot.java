@@ -512,7 +512,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 37;
+                    finalHeading = currentHeading + 45;
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();
@@ -540,6 +540,25 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.update();
                     }
                     robot.setDriveMotorPower(0, 0);
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 80;
+
+                    robot.setDriveMotorPower(0.5, -0.5);
+                    //telemetry.update();
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() > finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
+                        telemetry.update();
+
+                    }
+
+                    robot.setDriveMotorPower(0,0);
+
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
                     robot.setTeamMarkerGrip(.5);
