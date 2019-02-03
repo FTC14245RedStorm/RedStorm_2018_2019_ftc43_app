@@ -376,19 +376,20 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerArm(.1);
                     Thread.sleep(500);
                     robot.setTeamMarkerGrip(.1);
+                    Thread.sleep(500);
                     robot.setTeamMarkerArm(-.5);
                     telemetry.update();
                     //robot.initializeIMU();
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 27;
+                    finalHeading = currentHeading - 27;
 
                     robot.setDriveMotorPower(0.7, -0.7);
                     //telemetry.update();
                     while (opModeIsActive() &&
-                            robot.getIntegratedZAxis() < finalHeading) {
-                        telemetry.addLine("Turning to Gold Mineral");
+                            robot.getIntegratedZAxis() > finalHeading) {
+                        telemetry.addLine("Turning to Crater");
                         telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
                         telemetry.addData("currentHeading: ",currentHeading);
                         telemetry.addData("finalHeading: ",finalHeading);
@@ -426,7 +427,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.addData("Status ", "Straight");
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravelG = robot.calculateEncoderCounts(36);
+                    double encoderDistanceToTravelG = robot.calculateEncoderCounts(38);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.setDriveMotorPower(.8,.8);
@@ -493,6 +494,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
                         telemetry.update();
                     }
+                    robot.setDriveMotorPower(0,0);
                     double encoderDistanceToTravelC = robot.calculateEncoderCounts(10);
                     robot.resetEncoders();
                     robot.runWithEncoders();
