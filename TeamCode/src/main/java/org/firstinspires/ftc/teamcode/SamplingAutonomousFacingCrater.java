@@ -37,6 +37,9 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
     private int silverMineral1X = -1;
     private int silverMineral2X = -1;
 
+    double currentHeading = 0;
+    double finalHeading = 0;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -61,7 +64,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
         }
 
         /** Wait for the game to begin */
-        telemetry.addData(">", "Press Play to start tracking");
+        telemetry.addData(">", "Vuforia and TensorFlow initialized. Press play!");
         telemetry.update();
         waitForStart();
 
@@ -106,13 +109,22 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
             // Raise the arm back up
             robot.setTeamMarkerArm(-.5);
-            robot.initializeIMU();
+            //robot.initializeIMU();
 
-            robot.setDriveMotorPower(.2, -.2);
+            robot.setDriveMotorPower(.5, -.5);
+
+            // Setting up for clockwise turn
+
+            currentHeading = robot.getIntegratedZAxis();
+
+            finalHeading = currentHeading - 20;
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 20.0) {
-
+                    robot.getIntegratedZAxis() > finalHeading) {
+                telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.addData("currentHeading: ", currentHeading);
+                telemetry.addData("finalHeading: ", finalHeading);
+                telemetry.update();
             }
             telemetry.addData("Status ", "Turned");
             telemetry.update();
@@ -142,14 +154,23 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
             robot.setDriveMotorPower(0, 0);
 
-            robot.initializeIMU();
+            //robot.initializeIMU();
             //robot.setTeamMarkerArm(-.5);
 
-            robot.setDriveMotorPower(-.2, .2);
+            robot.setDriveMotorPower(-.5, .5);
+
+            // Setting up for counter clockwise turn
+
+            currentHeading = robot.getIntegratedZAxis();
+
+            finalHeading = currentHeading + 23;
 
             while (opModeIsActive() &&
-                    robot.getHeading() < 23.0) {
-
+                    robot.getIntegratedZAxis() < finalHeading) {
+                telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                telemetry.addData("currentHeading: ", currentHeading);
+                telemetry.addData("finalHeading: ", finalHeading);
+                telemetry.update();
             }
             telemetry.addData("Status ", "Turned");
             telemetry.update();
@@ -157,12 +178,6 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
             robot.resetEncoders();
             robot.runWithEncoders();
             robot.setDriveMotorPower(0, 0);
-
-
-            // Initialize the IMU
-            robot.initializeIMU();
-
-            telemetry.addLine().addData("IMU initialize", " complete");
 
 
             switch (goldLocation) {
@@ -173,26 +188,29 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     // robot.setTeamMarkerArm(.1);
 
 
-                    double crntHeading = robot.getHeading();
-                    telemetry.addLine().addData("currentHeading", String.valueOf(crntHeading));
-                    telemetry.addLine().addData("Start", "turning");
-                    telemetry.update();
-                    Thread.sleep(250);
+                    robot.setDriveMotorPower(-.5, .5);
 
-                    robot.setDriveMotorPower(-0.5, 0.5);
-                    telemetry.update();
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 7;
+
                     while (opModeIsActive() &&
-                            robot.getHeading() < 25.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
                         telemetry.update();
-
                     }
-                    robot.setDriveMotorPower(0,0);
-                    double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    double encoderDistanceToTravel = robot.calculateEncoderCounts(34);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.initializeIMU();
-                    robot.setDriveMotorPower(-.5,-.5);
+                    robot.setDriveMotorPower(-.5, -.5);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravel) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
@@ -213,7 +231,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.setDriveMotorPower(-.5, -.5);
+                    robot.setDriveMotorPower(-.75, -.75);
                     telemetry.update();
 
                     while (opModeIsActive() &&
@@ -238,20 +256,30 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     telemetry.update();
                     Thread.sleep(250);
 
-                    robot.setDriveMotorPower(0.5, -0.5);
-                    telemetry.update();
-                    while (opModeIsActive() &&
-                            robot.getHeading() < 25.0) {
-                        telemetry.addLine().addData("currentHeading", robot.getHeading());
-                        telemetry.update();
+                    robot.setDriveMotorPower(.5, -.5);
 
+                    // Setting up for clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 20;
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() > finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
                     }
-                    robot.setDriveMotorPower(0,0);
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0, 0);
                     double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
                     robot.resetEncoders();
                     robot.runWithEncoders();
                     robot.initializeIMU();
-                    robot.setDriveMotorPower(-.5,-.5);
+                    robot.setDriveMotorPower(-.5, -.5);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravel) {
                         telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
@@ -262,8 +290,6 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     break;
                 }
             }
-
-
 
 
         }// if (opModeIsActive())
@@ -307,11 +333,15 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
     /**
      * use TensorFlow and Vuforia to detect the gold mineral
+     *
      * @return goldMineralPosition
      */
 
 
     private int detectGoldMineralPosition() {
+
+        List<Recognition> updatedRecognitions = null;
+        int numberOfRecognitions = 0;
 
         // Temporary set up telemtry to not clear the screen
 
@@ -326,12 +356,31 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
             //so the red tape isn't identified as a mineral turn on the flash
             CameraDevice.getInstance().setFlashTorchMode(true);
             // getUpdatedRecognitions() will return null if no new information is available since
-                // the last time that call was made.
-                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            // the last time that call was made.
 
-                if (updatedRecognitions != null) {
+            // Loop through until we fine 3 detected objects.  The first time through, updateRecognitions
+            // will be NULL, meaning there is nothing in it and the numberOfRecognitions will be 0.  The
+            // code will loop until we find 3 detected items....then onto the normal processing
+
+            while (opModeIsActive() && (updatedRecognitions == null || numberOfRecognitions < 3)) {
+
+                if (tfod != null) {
+                    // getUpdatedRecognitions() will return null if no new information is available since
+                    // the last time that call was made.
+
+                    updatedRecognitions = tfod.getUpdatedRecognitions();
+                    if (updatedRecognitions == null) {
+                        numberOfRecognitions = 0;
+                    } else {
+                        numberOfRecognitions = updatedRecognitions.size();
+                    }
+                }
+            }
+
+            if (updatedRecognitions != null) {
                 telemetry.addLine().addData("# Object Detected", updatedRecognitions.size());
-                if (updatedRecognitions.size() == 3) {
+                if (updatedRecognitions.size() >= 1) {
+                    //was three
 
                     // Find the position of the minerals
 
@@ -349,8 +398,34 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     telemetry.addLine().addData("silverMineral", silverMineral1X);
                     telemetry.addLine().addData("silverMineral2X", silverMineral2X);
 
-                    // Did we find all of the minerals
-                    if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+
+                    if (goldMineralX == -1) {                 //gold mineral not found
+                        if (updatedRecognitions.size() == 2) {  //two silvers found
+                            if (silverMineral1X < 250 && silverMineral2X < 750) {  //silver is left and center
+                                goldLocation = 3; //gold must be on the right
+                            } else if ((silverMineral1X < 900 && silverMineral1X > 250) &&  //silver is center
+                                    silverMineral2X > 900) {  //silver is right
+                                goldLocation = 1;  //gold must be left
+                            } else {
+                                goldLocation = 2;  //gold must be in the center
+                            }
+                        } else {    // didn't find enough silver minerals
+                            goldLocation = 2;
+                        }
+                    } else {  //we found the gold mineral
+                        // Did we find all of the minerals
+                        if (goldMineralX < 250) {
+                            goldLocation = 1;
+                        } else if (goldMineralX > 900) {
+                            goldLocation = 3;
+                        } else {
+                            goldLocation = 2;
+                        }
+
+                    }
+
+
+                    /*if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
 
                         // Is the gold mineral at the leftmost position
                         if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
@@ -368,13 +443,13 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                             goldLocation = 2;
                         }
                         //tfod.shutdown();
-                    }
+                    } */
                 } //if (updatedRecognitions.size() == 3)
                 telemetry.update();
             } //if (updatedRecognitions != null)
         } //if (tfod != null)
 
-        telemetry.addLine().addData("goldLocation",String.valueOf(goldLocation));
+        telemetry.addLine().addData("goldLocation", String.valueOf(goldLocation));
         return goldLocation;
     }
 }

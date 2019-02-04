@@ -71,7 +71,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
         }
 
         /** Wait for the game to begin */
-        telemetry.addData(">", "Press Play to start tracking");
+        telemetry.addData(">", "Vuforia and TensorFlow initialized. Press play!");
         telemetry.update();
         waitForStart();
 
@@ -470,7 +470,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading - 20;
+                    finalHeading = currentHeading - 16;
 
                     robot.setDriveMotorPower(0.5, -0.5);
 
@@ -512,7 +512,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 45;
+                    finalHeading = currentHeading + 50 ;
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();
@@ -564,6 +564,35 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     robot.setTeamMarkerGrip(.5);
                     Thread.sleep(250);
                     robot.setTeamMarkerArm(-.5);
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 15;
+
+                    robot.setDriveMotorPower(-0.5, 0.5);
+                    //telemetry.update();
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
+                        telemetry.update();
+
+                    }
+
+                    double encoderDistanceToTravelE = robot.calculateEncoderCounts(74);
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    robot.setDriveMotorPower( .8,.8);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelE) {
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0, 0);
+
                     /*
 
                     //Thread.sleep(250);
