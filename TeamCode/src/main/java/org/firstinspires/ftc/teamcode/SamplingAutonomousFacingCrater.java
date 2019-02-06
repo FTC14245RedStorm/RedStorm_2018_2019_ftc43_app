@@ -262,7 +262,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading - 20;
+                    finalHeading = currentHeading - 18  ;
 
                     while (opModeIsActive() &&
                             robot.getIntegratedZAxis() > finalHeading) {

@@ -161,7 +161,6 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
             robot.setDriveMotorPower(0, 0);
 
-            //robot.initializeIMU();
             //robot.setTeamMarkerArm(-.5);
 
             robot.setDriveMotorPower(-.2, .2);
@@ -275,6 +274,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     }
                     //Thread.sleep(250);
                     telemetry.addData("Status ", "Straight");
+
                     telemetry.update();
                     robot.setDriveMotorPower(0,0);
                     //Thread.sleep(250);
@@ -567,7 +567,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 15;
+                    finalHeading = currentHeading + 13;
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();
