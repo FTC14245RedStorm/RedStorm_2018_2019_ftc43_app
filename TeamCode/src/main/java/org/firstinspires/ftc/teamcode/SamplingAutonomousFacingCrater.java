@@ -194,7 +194,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 7;
+                    finalHeading = currentHeading + 27;
 
                     while (opModeIsActive() &&
                             robot.getIntegratedZAxis() < finalHeading) {
@@ -206,10 +206,12 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     telemetry.addData("Status ", "Turned");
                     telemetry.update();
 
+                    robot.setDriveMotorPower(0,0);
+
                     double encoderDistanceToTravel = robot.calculateEncoderCounts(34);
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
                     robot.setDriveMotorPower(-.5, -.5);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravel) {
@@ -278,7 +280,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     double encoderDistanceToTravel = robot.calculateEncoderCounts(33);
                     robot.resetEncoders();
                     robot.runWithEncoders();
-                    robot.initializeIMU();
+                    //robot.initializeIMU();
                     robot.setDriveMotorPower(-.5, -.5);
                     while (opModeIsActive() &&
                             robot.getDriveEncoderCount() < encoderDistanceToTravel) {

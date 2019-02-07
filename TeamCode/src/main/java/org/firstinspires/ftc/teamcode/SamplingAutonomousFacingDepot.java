@@ -470,7 +470,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading - 16;
+                    finalHeading = currentHeading - 14.5;
 
                     robot.setDriveMotorPower(0.5, -0.5);
 
@@ -581,7 +581,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     }
 
-                    double encoderDistanceToTravelE = robot.calculateEncoderCounts(74);
+                    double encoderDistanceToTravelE = robot.calculateEncoderCounts(76);
 
                     robot.resetEncoders();
                     robot.runWithEncoders();
