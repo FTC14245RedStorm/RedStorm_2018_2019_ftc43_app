@@ -15,7 +15,7 @@ import java.util.List;
 
 import RedStorm.Robot.Robot;
 
-@Autonomous(name="SamplingAu`tonomousFacingDepot", group="FacingCrater")
+@Autonomous(name="SamplingAutonomousFacingDepot", group="FacingCrater")
 
 
 public class  SamplingAutonomousFacingDepot extends LinearOpMode {
@@ -316,11 +316,11 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     telemetry.update();
                     //robot.initializeIMU();
 
-                    robot.setDriveMotorPower(0.7, -0.7);
-
                     currentHeading = robot.getIntegratedZAxis();
 
                     finalHeading = currentHeading - 10;
+
+                    robot.setDriveMotorPower(0.7, -0.7);
 
                     while (opModeIsActive() &&
                             robot.getIntegratedZAxis() > finalHeading) {
@@ -357,6 +357,23 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
                     // robot.setTeamMarkerArm(.1);
                     telemetry.addLine().addData("Case 2", String.valueOf(goldLocation));
 
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 1;
+
+                    robot.setDriveMotorPower(-0.5, 0.5);
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addLine("Turning to Gold Mineral");
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ",currentHeading);
+                        telemetry.addData("finalHeading: ",finalHeading);
+                        telemetry.update();
+
+                    }
+                    robot.setDriveMotorPower(0,0);
+
                     double encoderDistanceToTravel = robot.calculateEncoderCounts(50);
                     telemetry.addLine().addData("encoderDistance", String.valueOf(encoderDistanceToTravel));
 
@@ -383,7 +400,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading - 27;
+                    finalHeading = currentHeading - 31 ;
 
                     robot.setDriveMotorPower(0.7, -0.7);
                     //telemetry.update();
@@ -567,7 +584,7 @@ public class  SamplingAutonomousFacingDepot extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 13;
+                    finalHeading = currentHeading + 15;
 
                     robot.setDriveMotorPower(-0.5, 0.5);
                     //telemetry.update();

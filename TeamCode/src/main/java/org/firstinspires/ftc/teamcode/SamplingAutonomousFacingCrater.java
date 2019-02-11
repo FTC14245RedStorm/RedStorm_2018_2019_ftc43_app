@@ -194,7 +194,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 27;
+                    finalHeading = currentHeading + 29;
 
                     while (opModeIsActive() &&
                             robot.getIntegratedZAxis() < finalHeading) {
@@ -224,6 +224,27 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                 }
 
                 case 2: {
+
+                    robot.setDriveMotorPower(-.5, .5);
+
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 1;
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
+                    }
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0,0);
+
                     //go straight ahead, knock mineral
                     // robot.setTeamMarkerArm(.1);
                     telemetry.addLine().addData("Case 2", String.valueOf(goldLocation));
