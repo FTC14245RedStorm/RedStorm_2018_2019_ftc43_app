@@ -194,7 +194,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
 
                     currentHeading = robot.getIntegratedZAxis();
 
-                    finalHeading = currentHeading + 29;
+                    finalHeading = currentHeading + 28;
 
                     while (opModeIsActive() &&
                             robot.getIntegratedZAxis() < finalHeading) {
@@ -206,7 +206,7 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     telemetry.addData("Status ", "Turned");
                     telemetry.update();
 
-                    robot.setDriveMotorPower(0,0);
+                    robot.setDriveMotorPower(0, 0);
 
                     double encoderDistanceToTravel = robot.calculateEncoderCounts(34);
                     robot.resetEncoders();
@@ -220,8 +220,147 @@ public class  SamplingAutonomousFacingCrater extends LinearOpMode {
                     }
                     robot.setDriveMotorPower(0, 0);
 
-                    break;
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    double encoderDistanceToTravelB = robot.calculateEncoderCounts(14);
+                    robot.setDriveMotorPower(.75, .75);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelB) {
+
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
+                    //Backed Up
+
+                    robot.setDriveMotorPower(-.75, .75);
+
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 35;
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
+                    }
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0, 0);
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    double encoderDistanceToTravelC = robot.calculateEncoderCounts(33);
+                    robot.setDriveMotorPower(-.75, -.75);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelC) {
+
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
+
+                    robot.setDriveMotorPower(-.75, .75);
+
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 38.5;
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
+                    }
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0, 0);
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    double encoderDistanceToTravelD = robot.calculateEncoderCounts(50);
+                    robot.setDriveMotorPower(-.5, -.5);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelD) {
+
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
+
+                    robot.setDriveMotorPower(.5, -.5);
+
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading - 90;
+
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() > finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
+                    }
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0, 0);
+
+                    robot.setTeamMarkerArm(.1);
+                    Thread.sleep(500);
+                    robot.setTeamMarkerGrip(.1);
+                    Thread.sleep(500);
+                    robot.setTeamMarkerArm(-.5);
+
+                    robot.setDriveMotorPower(-.5, .5);
+
+                    // Setting up for counter clockwise turn
+
+                    currentHeading = robot.getIntegratedZAxis();
+
+                    finalHeading = currentHeading + 90;
+                    while (opModeIsActive() &&
+                            robot.getIntegratedZAxis() < finalHeading) {
+                        telemetry.addData("IntegratedZAxis: ", robot.getIntegratedZAxis());
+                        telemetry.addData("currentHeading: ", currentHeading);
+                        telemetry.addData("finalHeading: ", finalHeading);
+                        telemetry.update();
+                    }
+                    telemetry.addData("Status ", "Turned");
+                    telemetry.update();
+
+                    robot.setDriveMotorPower(0, 0);
+
+                    robot.resetEncoders();
+                    robot.runWithEncoders();
+                    double encoderDistanceToTravelE = robot.calculateEncoderCounts(70);
+                    robot.setDriveMotorPower(1, 1);
+                    while (opModeIsActive() &&
+                            robot.getDriveEncoderCount() < encoderDistanceToTravelE) {
+
+                        telemetry.addLine().addData("encoder count", String.valueOf(robot.getDriveEncoderCount()));
+                        telemetry.update();
+                    }
+                    robot.setDriveMotorPower(0,0);
+
+
                 }
+
+                break;
 
                 case 2: {
 
